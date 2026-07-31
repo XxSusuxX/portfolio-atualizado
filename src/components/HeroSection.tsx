@@ -19,7 +19,7 @@ import {
   FileText,
   Download
 } from 'lucide-react';
-import { profileData } from '../data/portfolioData';
+import { downloadResumePDF } from '../utils/generatePdf';
 
 interface HeroSectionProps {
   onOpenResume: () => void;
@@ -84,10 +84,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
             >
               {/* Recruiter CV Download Button */}
               <button
-                onClick={onOpenResume}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-600/30 active:scale-95 border border-indigo-400/30"
+                onClick={() => {
+                  downloadResumePDF();
+                  onOpenResume();
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-600/30 active:scale-95 border border-indigo-400/30 cursor-pointer"
               >
-                <FileText className="w-4 h-4 text-indigo-200" />
+                <Download className="w-4 h-4 text-indigo-100 animate-bounce" />
                 <span>Baixar Currículo (PDF)</span>
               </button>
 

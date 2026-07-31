@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { downloadResumePDF } from '../utils/generatePdf';
 import {
   X,
   Printer,
@@ -112,23 +113,32 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleCopyText}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition-all active:scale-95"
                 title="Copiar texto do currículo"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copied ? 'Copiado!' : 'Copiar Texto'}</span>
+                <span className="hidden sm:inline">{copied ? 'Copiado!' : 'Copiar Texto'}</span>
+              </button>
+
+              <button
+                onClick={downloadResumePDF}
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 border border-indigo-400/40"
+                title="Baixar PDF do Currículo (cv-gabrielsuenaga.pdf)"
+              >
+                <Download className="w-4 h-4 text-indigo-100 animate-bounce" />
+                <span>Baixar PDF (.pdf)</span>
               </button>
 
               <button
                 onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition-all active:scale-95"
-                title="Salvar como PDF ou Imprimir"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold border border-zinc-700 transition-all active:scale-95"
+                title="Imprimir via navegador"
               >
                 <Printer className="w-3.5 h-3.5" />
-                <span>Baixar PDF / Imprimir</span>
+                <span className="hidden sm:inline">Imprimir</span>
               </button>
 
               <button
