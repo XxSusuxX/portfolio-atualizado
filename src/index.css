@@ -61,15 +61,29 @@
     color: #111111 !important;
   }
   
-  header, footer, nav, section, .no-print, .no-print-bg {
+  header, footer, nav, section, .no-print {
     display: none !important;
+  }
+
+  .cv-modal-backdrop {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    z-index: 99999 !important;
   }
 
   .printable-cv {
     display: block !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
+    position: static !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 24px !important;
@@ -77,6 +91,7 @@
     color: #111111 !important;
     box-shadow: none !important;
     border: none !important;
+    overflow: visible !important;
   }
 
   .printable-cv h1,
@@ -86,12 +101,13 @@
   .printable-cv font,
   .printable-cv span,
   .printable-cv strong,
-  .printable-cv li {
+  .printable-cv li,
+  .printable-cv div {
     color: #111111 !important;
   }
 
   .printable-cv a {
-    color: #312e81 !important;
+    color: #1e40af !important;
     text-decoration: underline;
   }
 

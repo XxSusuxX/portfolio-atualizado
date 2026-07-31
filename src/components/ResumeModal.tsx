@@ -37,7 +37,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   const mainProjects = projectsData.filter(p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'goodreads-scraper');
 
   const handlePrint = () => {
+    const originalTitle = document.title;
+    document.title = 'cv-gabrielsuenaga';
     window.print();
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 1000);
   };
 
   const handleCopyText = () => {
@@ -83,7 +88,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 no-print-bg">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 cv-modal-backdrop">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
