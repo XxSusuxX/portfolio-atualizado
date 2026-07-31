@@ -142,16 +142,16 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
           </div>
 
           {/* Printable Document Body */}
-          <div className="overflow-y-auto p-6 sm:p-10 space-y-8 bg-zinc-950 text-zinc-200 printable-cv font-sans">
+          <div className="overflow-y-auto p-6 sm:p-10 print:p-0 space-y-6 print:space-y-4 bg-zinc-950 text-zinc-200 printable-cv font-sans">
             
             {/* Header / Info Personal */}
-            <div className="border-b border-zinc-800 pb-6 space-y-4">
+            <div className="border-b border-zinc-800 pb-5 print:pb-3 space-y-3 print:space-y-2 cv-section-block">
               <div className="flex flex-wrap justify-between items-start gap-4">
                 <div>
-                  <h1 className="text-3xl sm:text-4xl font-extrabold text-white font-display tracking-tight">
+                  <h1 className="text-3xl sm:text-4xl print:text-2xl font-extrabold text-white font-display tracking-tight">
                     {profileData.name}
                   </h1>
-                  <p className="text-lg font-bold text-indigo-400 mt-1 font-display">
+                  <p className="text-lg print:text-sm font-bold text-indigo-400 mt-1 font-display">
                     {profileData.roleTitle}
                   </p>
                 </div>
@@ -169,7 +169,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               </div>
 
               {/* Social / Portfolio Links */}
-              <div className="flex flex-wrap gap-4 text-xs font-mono pt-2 text-zinc-300">
+              <div className="flex flex-wrap gap-4 text-xs font-mono pt-1 text-zinc-300">
                 <a href={profileData.linkedin} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
                   <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> linkedin.com/in/gabrielsuenaga
                 </a>
@@ -183,23 +183,23 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
             </div>
 
             {/* Perfil Profissional */}
-            <div className="space-y-2">
+            <div className="space-y-1.5 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>01.</span> Perfil Profissional
               </h2>
-              <p className="text-sm text-zinc-300 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm print:text-xs text-zinc-300 leading-relaxed font-normal">
                 Desenvolvedor de Software com forte perfil arquitetural e de produto, focado na criação de aplicações reais e escaláveis. Atualmente, sou fundador e Desenvolvedor Full-Stack do <strong>PetNexus</strong>, um SaaS Multi-Tenant complexo para o ecossistema pet. Especialista em acelerar o ciclo de desenvolvimento utilizando Inteligência Artificial como parceira de pair-programming. Possuo background sólido em automação de processos, integração de APIs e resiliência prática adquirida através de vivências intensas e determinação em entregar resultados sob qualquer circunstância. Busco sempre alinhar código limpo com impacto direto no negócio.
               </p>
             </div>
 
             {/* Formação Acadêmica */}
-            <div className="space-y-3">
+            <div className="space-y-2 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>02.</span> Formação Acadêmica
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                 {educationData.map((edu) => (
-                  <div key={edu.id} className="p-3.5 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1">
+                  <div key={edu.id} className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
                     <div className="flex justify-between items-start gap-2">
                       <h3 className="text-xs font-bold text-white font-display">{edu.title}</h3>
                       <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">{edu.period}</span>
@@ -212,24 +212,24 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
             </div>
 
             {/* Experiência Profissional */}
-            <div className="space-y-4">
+            <div className="space-y-3 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>03.</span> Experiência Profissional
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {experiencesData.slice(0, 4).map((exp) => (
-                  <div key={exp.id} className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2">
+                  <div key={exp.id} className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
                     <div className="flex flex-wrap justify-between items-start gap-2">
                       <div>
-                        <h3 className="text-sm font-bold text-white font-display">{exp.role}</h3>
+                        <h3 className="text-xs sm:text-sm font-bold text-white font-display">{exp.role}</h3>
                         <p className="text-xs font-semibold text-indigo-400">{exp.company} • {exp.location}</p>
                       </div>
-                      <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2.5 py-1 rounded border border-zinc-800">
+                      <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
                         {exp.period}
                       </span>
                     </div>
 
-                    <ul className="space-y-1.5 text-xs text-zinc-300">
+                    <ul className="space-y-1 text-xs text-zinc-300">
                       {exp.highlights.map((h, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
@@ -242,8 +242,8 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               </div>
             </div>
 
-            {/* Projetos Principais (APENAS os principais conforme solicitado) */}
-            <div className="space-y-3">
+            {/* Projetos Principais */}
+            <div className="space-y-2.5 cv-section-block">
               <div className="flex items-center justify-between">
                 <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                   <span>04.</span> Projetos Em Destaque no Portfólio
@@ -251,17 +251,17 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
                 <span className="text-[11px] font-mono text-zinc-400">(Apenas os Principais)</span>
               </div>
 
-              <div className="grid grid-cols-1 gap-3">
+              <div className="grid grid-cols-1 gap-2.5">
                 {mainProjects.map((proj) => (
-                  <div key={proj.id} className="p-4 rounded-xl bg-indigo-950/20 border border-indigo-900/40 space-y-2">
+                  <div key={proj.id} className="p-3.5 rounded-xl bg-indigo-950/20 border border-indigo-900/40 space-y-1.5 cv-card">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-sm font-bold text-white font-display">{proj.title}</h3>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">{proj.title}</h3>
                       <span className="text-[10px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">
                         {proj.badgeText}
                       </span>
                     </div>
                     <p className="text-xs text-zinc-300 leading-relaxed">{proj.description}</p>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {proj.stack.map((tech) => (
                         <span key={tech} className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400">
                           {tech}
@@ -274,11 +274,11 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
             </div>
 
             {/* Tecnologias e Competências */}
-            <div className="space-y-2 pt-2 border-t border-zinc-800">
+            <div className="space-y-2 pt-2 border-t border-zinc-800 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>05.</span> Principais Tecnologias & Competências
               </h2>
-              <div className="flex flex-wrap gap-2 pt-1">
+              <div className="flex flex-wrap gap-1.5 pt-1">
                 {[
                   "Next.js / React",
                   "TypeScript",
@@ -295,7 +295,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-semibold text-zinc-200"
+                    className="px-2.5 py-0.5 rounded-lg bg-zinc-900 border border-zinc-800 text-[11px] font-medium text-zinc-200"
                   >
                     {skill}
                   </span>
@@ -304,7 +304,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
             </div>
 
             {/* Footer Notice */}
-            <div className="pt-4 border-t border-zinc-900 text-center text-xs text-zinc-400 font-mono">
+            <div className="pt-3 border-t border-zinc-900 text-center text-[11px] text-zinc-400 font-mono cv-section-block">
               Gabriel Suenaga • Douradina - PR • {profileData.phone} • {profileData.email}
             </div>
 
