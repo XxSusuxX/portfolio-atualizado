@@ -8,7 +8,7 @@ export const profileData: ProfileData = {
   location: "Douradina, PR - Brasil",
   phone: "(44) 99828-9752",
   email: "gabriel.hneus@gmail.com",
-  website: "www.gabrielsuenaga.com.br",
+  website: "gabriel-suenaga.vercel.app",
   github: "https://github.com/xxsusuxxs",
   linkedin: "https://linkedin.com/in/gabrielsuenaga",
   instagram: "https://instagram.com/gabrielsu.dev",

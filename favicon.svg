@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#121215" stroke="#27272a" stroke-width="3"/>
+  <text x="32" y="42" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Space Grotesk', sans-serif" font-weight="900" font-size="28" fill="#6366f1" text-anchor="middle" letter-spacing="-0.5">GS</text>
+</svg>

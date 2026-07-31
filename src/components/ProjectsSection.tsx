@@ -13,10 +13,12 @@ import {
   X,
   Code2,
   Bot,
-  Github
+  Github,
+  Sparkles
 } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import { Project, ProjectCategory } from '../types';
+import { PetNexusPreview } from './PetNexusPreview';
 
 export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
@@ -192,6 +194,21 @@ export const ProjectsSection: React.FC = () => {
               </div>
 
             </div>
+
+            {/* Bottom Row: Database Schema Summary Bar */}
+            <div className="mt-8 pt-6 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-zinc-400">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="text-zinc-300 font-semibold">Supabase RLS:</span>
+                <code className="text-emerald-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                  tenant_id = auth.jwt() -&gt;&gt; 'tenant_id'
+                </code>
+              </div>
+              <div className="flex items-center gap-4 text-[11px]">
+                <span className="text-zinc-500">PostgreSQL 16 Multi-Tenant</span>
+                <span className="text-emerald-400 font-bold">● Admin Area Under Active Dev</span>
+              </div>
+            </div>
           </motion.div>
         ) : null}
 
@@ -311,7 +328,7 @@ export const ProjectsSection: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-2xl rounded-2xl bg-zinc-900 border border-zinc-800 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6"
+              className={`relative w-full ${activeModalProject.id === 'petnexus' ? 'max-w-4xl' : 'max-w-2xl'} rounded-2xl bg-zinc-900 border border-zinc-800 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6`}
             >
               {/* Modal Close Button */}
               <button
@@ -332,8 +349,18 @@ export const ProjectsSection: React.FC = () => {
                 <p className="text-sm text-zinc-400">{activeModalProject.tagline}</p>
               </div>
 
-              <div className="space-y-4 text-sm text-zinc-300 leading-relaxed">
+              <div className="space-y-5 text-sm text-zinc-300 leading-relaxed">
                 <p>{activeModalProject.fullDescription || activeModalProject.description}</p>
+
+                {activeModalProject.id === 'petnexus' && (
+                  <div className="space-y-3 pt-2 border-t border-zinc-800">
+                    <h4 className="text-xs font-bold text-emerald-400 uppercase font-mono tracking-wider flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-400" />
+                      <span>Prévia Interativa das Telas do Sistema (Portal do Cliente, Cadastrar Pet, Admin):</span>
+                    </h4>
+                    <PetNexusPreview />
+                  </div>
+                )}
 
                 {activeModalProject.architectureSpecs && (
                   <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
