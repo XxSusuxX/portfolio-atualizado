@@ -2,6 +2,20 @@ import { jsPDF } from 'jspdf';
 import { profileData, experiencesData, educationData, projectsData } from '../data/portfolioData';
 
 export function downloadResumePDF() {
+  try {
+    const link = document.createElement('a');
+    link.href = '/cv-gabrielsuenaga.pdf';
+    link.download = 'cv-gabrielsuenaga.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (err) {
+    console.error('Direct download failed, generating PDF via jsPDF...', err);
+    generateJsPdf();
+  }
+}
+
+function generateJsPdf() {
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
