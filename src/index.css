@@ -56,9 +56,16 @@
 
 /* Print / PDF Export Styles */
 @media print {
-  body {
-    background-color: #ffffff !important;
-    color: #111111 !important;
+  @page {
+    margin: 10mm;
+    size: auto;
+  }
+
+  html, body {
+    background-color: #09090b !important;
+    color: #f4f4f5 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   
   header, footer, nav, section, .no-print {
@@ -71,7 +78,7 @@
     top: 0 !important;
     width: 100% !important;
     height: auto !important;
-    background: #ffffff !important;
+    background: #09090b !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: visible !important;
@@ -79,6 +86,8 @@
     box-shadow: none !important;
     border: none !important;
     z-index: 99999 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .printable-cv {
@@ -87,33 +96,23 @@
     width: 100% !important;
     margin: 0 !important;
     padding: 24px !important;
-    background-color: #ffffff !important;
-    color: #111111 !important;
+    background-color: #09090b !important;
+    color: #f4f4f5 !important;
     box-shadow: none !important;
     border: none !important;
     overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .printable-cv h1,
-  .printable-cv h2,
-  .printable-cv h3,
-  .printable-cv p,
-  .printable-cv font,
-  .printable-cv span,
-  .printable-cv strong,
-  .printable-cv li,
-  .printable-cv div {
-    color: #111111 !important;
+  .printable-cv * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .printable-cv a {
-    color: #1e40af !important;
+    color: #818cf8 !important;
     text-decoration: underline;
-  }
-
-  .printable-cv div {
-    background-color: transparent !important;
-    border-color: #e5e7eb !important;
   }
 }
 
