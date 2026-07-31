@@ -20,6 +20,7 @@ import {
   Download
 } from 'lucide-react';
 import { downloadResumePDF } from '../utils/generatePdf';
+import { profileData } from '../data/portfolioData';
 
 interface HeroSectionProps {
   onOpenResume: () => void;

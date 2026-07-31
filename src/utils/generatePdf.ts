@@ -1,5 +1,5 @@
 import { jsPDF } from 'jspdf';
-import { profileData, educationData, experiencesData, projectsData } from '../data/portfolioData';
+import { profileData, experiencesData, educationData, projectsData } from '../data/portfolioData';
 
 export function downloadResumePDF() {
   const doc = new jsPDF({
@@ -8,15 +8,14 @@ export function downloadResumePDF() {
     format: 'a4',
   });
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
+  const pageWidth = doc.internal.pageSize.getWidth(); // 210mm
+  const pageHeight = doc.internal.pageSize.getHeight(); // 297mm
   const margin = 12;
-  const contentWidth = pageWidth - margin * 2;
+  const contentWidth = pageWidth - margin * 2; // 186mm
   let y = 14;
 
-  // Dark sleek background
   const setPageBackground = () => {
-    doc.setFillColor(15, 15, 18); // #0f0f12
+    doc.setFillColor(12, 12, 15); // #0c0c0f
     doc.rect(0, 0, pageWidth, pageHeight, 'F');
   };
 
@@ -35,190 +34,227 @@ export function downloadResumePDF() {
   doc.setFontSize(22);
   doc.setTextColor(255, 255, 255);
   doc.text(profileData.name, margin, y);
-  y += 7;
+  y += 6.5;
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(129, 140, 248); // #818cf8 (Indigo)
   doc.text(profileData.roleTitle, margin, y);
-  y += 6;
+  y += 5.5;
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(161, 161, 170); // zinc-400
-  const contactText = `${profileData.location}  |  ${profileData.phone}  |  ${profileData.email}`;
-  doc.text(contactText, margin, y);
+
+  // Line 1: Phone & Location & Email
+  const contactLine1 = `Phone: ${profileData.phone}   |   ${profileData.location}   |   ${profileData.email}`;
+  doc.text(contactLine1, margin, y);
   y += 4;
 
-  const linksText = `LinkedIn: linkedin.com/in/gabrielsuenaga  |  GitHub: github.com/xxsusuxxs  |  Portfolio: gabriel-suenaga.vercel.app`;
-  doc.text(linksText, margin, y);
-  y += 6;
+  // Line 2: Links
+  const contactLine2 = `linkedin.com/in/gabriel-suenaga   |   github.com/xxsusuxx   |   ${profileData.website}`;
+  doc.text(contactLine2, margin, y);
+  y += 5.5;
 
   doc.setDrawColor(39, 39, 42); // zinc-800
-  doc.setLineWidth(0.4);
+  doc.setLineWidth(0.3);
   doc.line(margin, y, pageWidth - margin, y);
   y += 6;
 
+  // Section Header helper
   const drawSectionHeader = (number: string, title: string) => {
     checkPageBreak(10);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
+    
+    // Number prefix in indigo, title in white
     doc.setTextColor(129, 140, 248);
-    doc.text(`${number}. ${title.toUpperCase()}`, margin, y);
-    y += 5;
+    doc.text(`${number}.`, margin, y);
+    const numWidth = doc.getTextWidth(`${number}. `);
+
+    doc.setTextColor(255, 255, 255);
+    doc.text(title.toUpperCase(), margin + numWidth, y);
+    y += 5.5;
   };
 
   // --- 01. PERFIL PROFISSIONAL ---
   drawSectionHeader('01', 'Perfil Profissional');
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.5);
+  doc.setFontSize(8.2);
   doc.setTextColor(212, 212, 216);
-  
-  const bio = "Desenvolvedor de Software com forte perfil arquitetural e de produto, focado na criação de aplicações reais e escaláveis. Atualmente, sou fundador e Desenvolvedor Full-Stack do PetNexus, um SaaS Multi-Tenant complexo para o ecossistema pet. Especialista em acelerar o ciclo de desenvolvimento utilizando Inteligência Artificial como parceira de pair-programming. Possuo background sólido em automação de processos, integração de APIs e resiliência prática adquirida através de vivências intensas e determinação em entregar resultados sob qualquer circunstância. Busco sempre alinhar código limpo com impacto direto no negócio.";
-  
-  const bioLines = doc.splitTextToSize(bio, contentWidth);
-  checkPageBreak(bioLines.length * 4);
+
+  const bioLines = doc.splitTextToSize(profileData.bioText, contentWidth);
+  checkPageBreak(bioLines.length * 3.8 + 4);
   doc.text(bioLines, margin, y);
-  y += bioLines.length * 4 + 4;
+  y += bioLines.length * 3.8 + 5;
 
-  // --- 02. FORMAÇÃO ACADÊMICA ---
-  drawSectionHeader('02', 'Formação Acadêmica');
-  
-  educationData.forEach((edu) => {
-    checkPageBreak(12);
-    doc.setFillColor(24, 24, 27);
-    doc.roundedRect(margin, y, contentWidth, 11, 1.5, 1.5, 'F');
+  // --- 02. PROJETOS PRINCIPAIS ---
+  drawSectionHeader('02', 'Projetos Principais');
 
+  const mainProjects = projectsData.filter(
+    p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'goodreads-scraper'
+  );
+
+  mainProjects.forEach((proj) => {
+    const descLines = doc.splitTextToSize(proj.description, contentWidth - 8);
+    const cardHeight = 8 + descLines.length * 3.8 + 3;
+
+    checkPageBreak(cardHeight + 2);
+
+    // Card Container
+    doc.setFillColor(20, 20, 25);
+    doc.setDrawColor(39, 39, 42);
+    doc.roundedRect(margin, y, contentWidth, cardHeight, 1.5, 1.5, 'FD');
+
+    // Title
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8.5);
     doc.setTextColor(255, 255, 255);
-    doc.text(edu.title, margin + 3, y + 4.5);
+    doc.text(proj.title, margin + 4, y + 4.5);
 
+    // Description
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.5);
-    doc.setTextColor(161, 161, 170);
-    doc.text(edu.period, pageWidth - margin - 3, y + 4.5, { align: 'right' });
+    doc.setFontSize(7.8);
+    doc.setTextColor(212, 212, 216);
+    doc.text(descLines, margin + 4, y + 8.5);
 
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(7.5);
-    doc.setTextColor(129, 140, 248);
-    doc.text(`${edu.institution} - ${edu.status}`, margin + 3, y + 8.5);
-
-    y += 13;
+    y += cardHeight + 3;
   });
   y += 2;
 
   // --- 03. EXPERIÊNCIA PROFISSIONAL ---
   drawSectionHeader('03', 'Experiência Profissional');
 
-  experiencesData.slice(0, 4).forEach((exp) => {
-    const highlightsText = exp.highlights;
-    const estimatedHeight = 11 + highlightsText.length * 4.2;
-    checkPageBreak(estimatedHeight);
-
-    doc.setFillColor(24, 24, 27);
-    doc.roundedRect(margin, y, contentWidth, estimatedHeight - 2, 1.5, 1.5, 'F');
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8.5);
-    doc.setTextColor(255, 255, 255);
-    doc.text(exp.role, margin + 3, y + 4.5);
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.5);
-    doc.setTextColor(161, 161, 170);
-    doc.text(exp.period, pageWidth - margin - 3, y + 4.5, { align: 'right' });
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(7.5);
-    doc.setTextColor(129, 140, 248);
-    doc.text(`${exp.company} • ${exp.location}`, margin + 3, y + 8.5);
-
-    let itemY = y + 12.5;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.5);
-    doc.setTextColor(212, 212, 216);
-
-    highlightsText.forEach((h) => {
-      const wrapped = doc.splitTextToSize(`• ${h}`, contentWidth - 8);
-      doc.text(wrapped, margin + 4, itemY);
-      itemY += wrapped.length * 3.6;
+  experiencesData.forEach((exp) => {
+    // Calculate total lines for highlights
+    let highlightsHeight = 0;
+    exp.highlights.forEach(h => {
+      const wrapped = doc.splitTextToSize(`v  ${h}`, contentWidth - 10);
+      highlightsHeight += wrapped.length * 3.8;
     });
 
-    y += estimatedHeight + 2;
-  });
+    const cardHeight = 11 + highlightsHeight + 3;
+    checkPageBreak(cardHeight + 2);
 
-  // --- 04. PROJETOS EM DESTAQUE ---
-  drawSectionHeader('04', 'Projetos Em Destaque');
+    // Card Box
+    doc.setFillColor(20, 20, 25);
+    doc.setDrawColor(39, 39, 42);
+    doc.roundedRect(margin, y, contentWidth, cardHeight, 1.5, 1.5, 'FD');
 
-  const mainProjects = projectsData.filter(
-    (p) => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'goodreads-scraper'
-  );
-
-  mainProjects.forEach((proj) => {
-    const stackText = `Stack: ${proj.stack.join(', ')}`;
-    const descLines = doc.splitTextToSize(proj.description, contentWidth - 8);
-    const projHeight = 11 + descLines.length * 3.6 + 5;
-
-    checkPageBreak(projHeight);
-
-    doc.setFillColor(24, 24, 27);
-    doc.roundedRect(margin, y, contentWidth, projHeight - 2, 1.5, 1.5, 'F');
-
+    // Role
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8.5);
     doc.setTextColor(255, 255, 255);
-    doc.text(proj.title, margin + 3, y + 4.5);
+    doc.text(exp.role, margin + 4, y + 4.5);
 
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(7);
-    doc.setTextColor(165, 180, 252);
-    doc.text(proj.badgeText, pageWidth - margin - 3, y + 4.5, { align: 'right' });
-
-    let lineY = y + 8.5;
+    // Period
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7.5);
-    doc.setTextColor(212, 212, 216);
-    doc.text(descLines, margin + 3, lineY);
-
-    lineY += descLines.length * 3.6 + 1;
-    doc.setFont('helvetica', 'italic');
-    doc.setFontSize(7);
     doc.setTextColor(161, 161, 170);
-    doc.text(stackText, margin + 3, lineY);
+    doc.text(exp.period, pageWidth - margin - 4, y + 4.5, { align: 'right' });
 
-    y += projHeight + 2;
+    // Company & Location
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.8);
+    doc.setTextColor(129, 140, 248);
+    doc.text(`${exp.company} • ${exp.location}`, margin + 4, y + 8.5);
+
+    // Highlights Bullets
+    let currentBulletY = y + 12.5;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.6);
+
+    exp.highlights.forEach(h => {
+      // Checkmark icon indicator
+      doc.setTextColor(129, 140, 248);
+      doc.text('v', margin + 4, currentBulletY);
+
+      doc.setTextColor(212, 212, 216);
+      const wrapped = doc.splitTextToSize(h, contentWidth - 12);
+      doc.text(wrapped, margin + 8, currentBulletY);
+
+      currentBulletY += wrapped.length * 3.8;
+    });
+
+    y += cardHeight + 3;
   });
+  y += 2;
 
-  // --- 05. PRINCIPAIS TECNOLOGIAS ---
-  drawSectionHeader('05', 'Principais Tecnologias & Competências');
-  checkPageBreak(12);
+  // --- 04. FORMAÇÃO ACADÊMICA ---
+  drawSectionHeader('04', 'Formação Acadêmica');
 
-  const skillsList = [
-    "Next.js / React", "TypeScript", "Tailwind CSS", "Supabase & Auth",
-    "PostgreSQL & RLS", "Zod Schema", "Python (Selenium/Scrapy)", "APIs RESTful",
-    "Multi-Tenancy", "IA em Pair-Programming", "Automações B2B", "Git / GitHub Workflow"
+  educationData.forEach((edu) => {
+    const cardHeight = 11;
+    checkPageBreak(cardHeight + 2);
+
+    doc.setFillColor(20, 20, 25);
+    doc.setDrawColor(39, 39, 42);
+    doc.roundedRect(margin, y, contentWidth, cardHeight, 1.5, 1.5, 'FD');
+
+    // Title
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(255, 255, 255);
+    doc.text(edu.title, margin + 4, y + 4.5);
+
+    // Period
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(161, 161, 170);
+    doc.text(edu.period, pageWidth - margin - 4, y + 4.5, { align: 'right' });
+
+    // Institution
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.8);
+    doc.setTextColor(129, 140, 248);
+    doc.text(edu.institution, margin + 4, y + 8.5);
+
+    y += cardHeight + 3;
+  });
+  y += 2;
+
+  // --- 05. PRINCIPAIS COMPETÊNCIAS ---
+  drawSectionHeader('05', 'Principais Competências');
+
+  const skills = [
+    "Next.js / React",
+    "TypeScript",
+    "Supabase (Auth/RLS)",
+    "PostgreSQL",
+    "Python",
+    "APIs REST",
+    "Web Scraping (Scrapy/Selenium)",
+    "Tailwind CSS",
+    "Visão de Produto & SaaS Multi-Tenant"
   ];
 
+  checkPageBreak(18);
+
+  let currentX = margin;
+  let currentY = y;
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8);
-  doc.setTextColor(212, 212, 216);
+  doc.setFontSize(7.5);
 
-  const skillsText = skillsList.join('   |   ');
-  const wrappedSkills = doc.splitTextToSize(skillsText, contentWidth);
-  doc.text(wrappedSkills, margin, y);
-  y += wrappedSkills.length * 4 + 4;
+  skills.forEach((skill) => {
+    const textWidth = doc.getTextWidth(skill);
+    const boxWidth = textWidth + 6;
+    const boxHeight = 5.5;
 
-  // --- FOOTER ---
-  checkPageBreak(8);
-  doc.setDrawColor(39, 39, 42);
-  doc.line(margin, y, pageWidth - margin, y);
-  y += 4;
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(7);
-  doc.setTextColor(113, 113, 122);
-  doc.text(`Gabriel Suenaga • ${profileData.email} • ${profileData.phone} • ${profileData.website}`, pageWidth / 2, y, { align: 'center' });
+    if (currentX + boxWidth > pageWidth - margin) {
+      currentX = margin;
+      currentY += boxHeight + 2.5;
+    }
 
-  // Download directly as cv-gabrielsuenaga.pdf
+    doc.setFillColor(20, 20, 25);
+    doc.setDrawColor(39, 39, 42);
+    doc.roundedRect(currentX, currentY, boxWidth, boxHeight, 1, 1, 'FD');
+
+    doc.setTextColor(165, 180, 252);
+    doc.text(skill, currentX + 3, currentY + 3.8);
+
+    currentX += boxWidth + 2.5;
+  });
+
+  // Save PDF
   doc.save('cv-gabrielsuenaga.pdf');
 }

@@ -7,10 +7,6 @@ import {
   Download,
   Copy,
   Check,
-  Briefcase,
-  GraduationCap,
-  FolderGit2,
-  Code2,
   Mail,
   Phone,
   MapPin,
@@ -18,8 +14,6 @@ import {
   Github,
   Globe,
   CheckCircle2,
-  ExternalLink,
-  Sparkles,
   FileText
 } from 'lucide-react';
 import { profileData, experiencesData, educationData, projectsData } from '../data/portfolioData';
@@ -34,7 +28,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   if (!isOpen) return null;
 
-  // Filter ONLY main principal projects as requested
   const mainProjects = projectsData.filter(p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'goodreads-scraper');
 
   const handlePrint = () => {
@@ -50,35 +43,27 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     const cvText = `
 ${profileData.name} - ${profileData.roleTitle}
 Contato: ${profileData.phone} | ${profileData.location} | ${profileData.email}
-LinkedIn: ${profileData.linkedin} | GitHub: ${profileData.github} | Portfolio: ${profileData.website}
+LinkedIn: linkedin.com/in/gabriel-suenaga | GitHub: github.com/xxsusuxx | Portfolio: ${profileData.website}
 
-PERFIL PROFISSIONAL
-Desenvolvedor de Software com forte perfil arquitetural e de produto, focado na criação de aplicações reais e escaláveis. Criador e Desenvolvedor Full-Stack do PetNexus (SaaS Multi-Tenant). Especialista em ecossistema JavaScript/TypeScript (Next.js, React, Node.js), bancos relacionais (PostgreSQL/Supabase) e automações em Python. Especialista em acelerar o ciclo de desenvolvimento utilizando IA para pair-programming e entregar resultados de alto impacto com código limpo e autonomia.
+01. PERFIL PROFISSIONAL
+${profileData.bioText}
 
-FORMAÇÃO ACADÊMICA
-• Técnico em Desenvolvimento de Sistemas (2022 - 2023) - Colégio Estadual Cleoracy Aparecida Gil (Melhor Aluno da Turma)
-• Engenheiro Front-end (2023 - 2024) - EBAC (Escola Britânica de Artes Criativas e Tecnologia)
-• Especializações em Python & Automações (2024 - 2025) - Dev Aprender, Alura & Outras
+02. PROJETOS PRINCIPAIS
+1. PetNexus (SaaS Multi-Tenant): Arquitetura e desenvolvimento completo de um SaaS para gestão inteligente do ecossistema pet.
+2. Douradina MultiServiços: Hub de serviços para Douradina-PR e região que conecta clientes a profissionais.
+3. Goodreads Scraper & GUI: Programa em Python para extração automatizada de citações e metadados.
 
-EXPERIÊNCIA PROFISSIONAL
+03. EXPERIÊNCIA PROFISSIONAL
 • Fundador e Desenvolvedor Full-Stack (Maio 2025 – Atual) | PetNexus (SaaS)
-  - Arquitetura e desenvolvimento completo do PetNexus, um SaaS para gestão inteligente de pet shops e clínicas veterinárias.
-  - Stack: Next.js (App Router), React, TypeScript, Supabase (PostgreSQL, Row Level Security - RLS, Auth) e Zod.
-  - Modelagem relacional para agendamentos, estoque, prontuários de pets e financeiro com isolamento total de dados.
-
 • Criador de Conteúdo & Desenvolvedor Freelance (Agosto 2025 – Atual) | Autônomo
-  - Desenvolvimento de scripts de automação em Python (Selenium, Scrapy, Tkinter) para extração e estruturação de dados.
-  - Concilio o trabalho prático com dedicação diária ao estudo de arquitetura de software e criação de conteúdo.
-
+• Desenvolvedor Front-end (Voluntário) (Nov 2023 – Abr 2024) | Projeto Base
 • Operador de Espumação Noturno & Líder de Setor (Maio 2024 – Março 2025) | Gazin Colchões
-  - Liderança de equipe e organização de turnos produtivos em ambiente fabril de alta demanda e resolução de problemas.
 
-PROJETOS PRINCIPAIS
-1. PetNexus (SaaS Multi-Tenant): SaaS completo com Next.js, React, TypeScript, Supabase e RLS.
-2. Douradina MultiServiços: Plataforma de contratação e gestão de serviços locais integrada ao WhatsApp & IA.
-3. Goodreads Scraper & GUI: Aplicação Python em Scrapy + Tkinter para raspagem e estruturação de dados.
+04. FORMAÇÃO ACADÊMICA
+• Técnico em Desenvolvimento de Sistemas (2022 - 2023) - Colégio Estadual Cleoracy Aparecida Gil
+• Engenheiro Front-end (2023 - 2024) - EBAC
 
-PRINCIPAIS COMPETÊNCIAS
+05. PRINCIPAIS COMPETÊNCIAS
 Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST, Web Scraping (Scrapy/Selenium), Tailwind CSS, Visão de Produto & SaaS Multi-Tenant.
     `.trim();
 
@@ -116,7 +101,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleCopyText}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition-all active:scale-95"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 transition-all active:scale-95 cursor-pointer"
                 title="Copiar texto do currículo"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -125,7 +110,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
 
               <button
                 onClick={downloadResumePDF}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 border border-indigo-400/40"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 border border-indigo-400/40 cursor-pointer"
                 title="Baixar PDF do Currículo (cv-gabrielsuenaga.pdf)"
               >
                 <Download className="w-4 h-4 text-indigo-100 animate-bounce" />
@@ -134,7 +119,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
 
               <button
                 onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold border border-zinc-700 transition-all active:scale-95"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold border border-zinc-700 transition-all active:scale-95 cursor-pointer"
                 title="Imprimir via navegador"
               >
                 <Printer className="w-3.5 h-3.5" />
@@ -143,7 +128,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
 
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white transition-colors"
+                className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white transition-colors cursor-pointer"
                 aria-label="Fechar"
               >
                 <X className="w-5 h-5" />
@@ -154,7 +139,7 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
           {/* Printable Document Body */}
           <div className="overflow-y-auto p-6 sm:p-10 print:p-0 space-y-6 print:space-y-4 bg-zinc-950 text-zinc-200 printable-cv font-sans">
             
-            {/* Header / Info Personal */}
+            {/* Header / Personal Info */}
             <div className="border-b border-zinc-800 pb-5 print:pb-3 space-y-3 print:space-y-2 cv-section-block">
               <div className="flex flex-wrap justify-between items-start gap-4">
                 <div>
@@ -181,10 +166,10 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               {/* Social / Portfolio Links */}
               <div className="flex flex-wrap gap-4 text-xs font-mono pt-1 text-zinc-300">
                 <a href={profileData.linkedin} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> linkedin.com/in/gabrielsuenaga
+                  <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> linkedin.com/in/gabriel-suenaga
                 </a>
                 <a href={profileData.github} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <Github className="w-3.5 h-3.5 text-indigo-400" /> github.com/xxsusuxxs
+                  <Github className="w-3.5 h-3.5 text-indigo-400" /> github.com/xxsusuxx
                 </a>
                 <a href={`https://${profileData.website}`} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
                   <Globe className="w-3.5 h-3.5 text-indigo-400" /> {profileData.website}
@@ -192,42 +177,38 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               </div>
             </div>
 
-            {/* Perfil Profissional */}
+            {/* 01. Perfil Profissional */}
             <div className="space-y-1.5 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>01.</span> Perfil Profissional
               </h2>
               <p className="text-xs sm:text-sm print:text-xs text-zinc-300 leading-relaxed font-normal">
-                Desenvolvedor de Software com forte perfil arquitetural e de produto, focado na criação de aplicações reais e escaláveis. Atualmente, sou fundador e Desenvolvedor Full-Stack do <strong>PetNexus</strong>, um SaaS Multi-Tenant complexo para o ecossistema pet. Especialista em acelerar o ciclo de desenvolvimento utilizando Inteligência Artificial como parceira de pair-programming. Possuo background sólido em automação de processos, integração de APIs e resiliência prática adquirida através de vivências intensas e determinação em entregar resultados sob qualquer circunstância. Busco sempre alinhar código limpo com impacto direto no negócio.
+                {profileData.bioText}
               </p>
             </div>
 
-            {/* Formação Acadêmica */}
-            <div className="space-y-2 cv-section-block">
+            {/* 02. Projetos Principais */}
+            <div className="space-y-2.5 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
-                <span>02.</span> Formação Acadêmica
+                <span>02.</span> Projetos Principais
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-                {educationData.map((edu) => (
-                  <div key={edu.id} className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
-                    <div className="flex justify-between items-start gap-2">
-                      <h3 className="text-xs font-bold text-white font-display">{edu.title}</h3>
-                      <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">{edu.period}</span>
-                    </div>
-                    <p className="text-[11px] font-semibold text-indigo-400">{edu.institution}</p>
-                    <p className="text-[11px] text-zinc-400">{edu.status}</p>
+              <div className="grid grid-cols-1 gap-2.5">
+                {mainProjects.map((proj) => (
+                  <div key={proj.id} className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1 cv-card">
+                    <h3 className="text-xs sm:text-sm font-bold text-white font-display">{proj.title}</h3>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{proj.description}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Experiência Profissional */}
+            {/* 03. Experiência Profissional */}
             <div className="space-y-3 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>03.</span> Experiência Profissional
               </h2>
               <div className="space-y-3">
-                {experiencesData.slice(0, 4).map((exp) => (
+                {experiencesData.map((exp) => (
                   <div key={exp.id} className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
                     <div className="flex flex-wrap justify-between items-start gap-2">
                       <div>
@@ -252,60 +233,44 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               </div>
             </div>
 
-            {/* Projetos Principais */}
-            <div className="space-y-2.5 cv-section-block">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
-                  <span>04.</span> Projetos Em Destaque no Portfólio
-                </h2>
-                <span className="text-[11px] font-mono text-zinc-400">(Apenas os Principais)</span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-2.5">
-                {mainProjects.map((proj) => (
-                  <div key={proj.id} className="p-3.5 rounded-xl bg-indigo-950/20 border border-indigo-900/40 space-y-1.5 cv-card">
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">{proj.title}</h3>
-                      <span className="text-[10px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">
-                        {proj.badgeText}
-                      </span>
+            {/* 04. Formação Acadêmica */}
+            <div className="space-y-2 cv-section-block">
+              <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
+                <span>04.</span> Formação Acadêmica
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                {educationData.map((edu) => (
+                  <div key={edu.id} className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
+                    <div className="flex justify-between items-start gap-2">
+                      <h3 className="text-xs font-bold text-white font-display">{edu.title}</h3>
+                      <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">{edu.period}</span>
                     </div>
-                    <p className="text-xs text-zinc-300 leading-relaxed">{proj.description}</p>
-                    <div className="flex flex-wrap gap-1.5 pt-0.5">
-                      {proj.stack.map((tech) => (
-                        <span key={tech} className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    <p className="text-[11px] font-semibold text-indigo-400">{edu.institution}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Tecnologias e Competências */}
+            {/* 05. Principais Competências */}
             <div className="space-y-2 pt-2 border-t border-zinc-800 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
-                <span>05.</span> Principais Tecnologias & Competências
+                <span>05.</span> Principais Competências
               </h2>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {[
                   "Next.js / React",
                   "TypeScript",
-                  "Supabase (Auth & RLS)",
-                  "PostgreSQL & Modelagem",
-                  "Python & Automações",
-                  "APIs RESTful",
+                  "Supabase (Auth/RLS)",
+                  "PostgreSQL",
+                  "Python",
+                  "APIs REST",
                   "Web Scraping (Scrapy/Selenium)",
-                  "Zod & React Hook Form",
                   "Tailwind CSS",
-                  "Pair-Programming com IA",
-                  "Arquitetura SaaS Multi-Tenant",
-                  "Liderança & Visão de Produto"
+                  "Visão de Produto & SaaS Multi-Tenant"
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-0.5 rounded-lg bg-zinc-900 border border-zinc-800 text-[11px] font-medium text-zinc-200"
+                    className="px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-[11px] font-medium text-indigo-300 font-mono"
                   >
                     {skill}
                   </span>
