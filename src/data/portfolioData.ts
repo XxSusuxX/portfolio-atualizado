@@ -4,13 +4,13 @@ export const profileData: ProfileData = {
   name: "Gabriel Suenaga",
   roleTitle: "Desenvolvedor de Software & CEO",
   subtitle: "Criador do PetNexus (SaaS Multi-Tenant) e especialista em Next.js, TypeScript e automações B2B.",
-  bioText: "Desenvolvedor de Software com forte perfil arquitetural e de produto, focado na criação de aplicações reais e escaláveis. Criador e Desenvolvedor Full-Stack do PetNexus (SaaS Multi-Tenant). Especialista em ecossistema JavaScript/TypeScript (Next.js, React, Node.js), bancos relacionais (PostgreSQL/Supabase) e automações em Python. Especialista em acelerar o ciclo de desenvolvimento utilizando IA para pair-programming e entregar resultados de alto impacto com código limpo e autonomia.",
+  bioText: "Desenvolvedor Full-Stack e Criador do PetNexus (SaaS Multi-Tenant). Especialista em Next.js, React, TypeScript, PostgreSQL (Supabase) e automações B2B com Python. Concilio determinação diária e aceleração por IA com foco em código limpo, autonomia e impacto no negócio.",
   location: "Douradina, PR - Brasil",
   phone: "(44) 99828-9752",
   email: "gabriel.hneus@gmail.com",
-  website: "gabriel-suenaga.vercel.app",
-  github: "https://github.com/xxsusuxx",
-  linkedin: "https://linkedin.com/in/gabriel-suenaga",
+  website: "www.gabrielsuenaga.com.br",
+  github: "https://github.com/xxsusuxxs",
+  linkedin: "https://linkedin.com/in/gabrielsuenaga",
   instagram: "https://instagram.com/gabrielsu.dev",
   whatsappUrl: "https://wa.me/5544998289752"
 };
@@ -18,7 +18,7 @@ export const profileData: ProfileData = {
 export const projectsData: Project[] = [
   {
     id: "petnexus",
-    title: "PetNexus (SaaS Multi-Tenant)",
+    title: "PetNexus — SaaS Multi-Tenant",
     category: "saas",
     featured: true,
     featuredOrder: 1,
@@ -47,7 +47,7 @@ export const projectsData: Project[] = [
     featured: true,
     featuredOrder: 2,
     tagline: "Plataforma de contratação e gestão de serviços locais com WhatsApp & IA",
-    description: "Hub de serviços para Douradina-PR e região que conecta clientes a profissionais de manutenção, reformas e limpezas através de formulários dinâmicos e atendimento integrado via WhatsApp & IA.",
+    description: "Hub de serviços para Douradina-PR e região que conecta clientes a profissionais de manutenção, reformas e limpezas através de formulários dinâmicos e atendimento integrado via WhatsApp.",
     fullDescription: "A Douradina MultiServiços é uma plataforma regional desenvolvida para centralizar a solicitação e orçamento de múltiplos serviços residenciais e comerciais (construção, reparos, limpeza pós-obra, capina, elétrica, etc.). Possui fluxo de triagem dinâmico, orçamentos diretamente direcionados para o WhatsApp e arquitetura preparada para automação com inteligência artificial.",
     stack: ["React", "TypeScript", "Tailwind CSS", "WhatsApp API", "UX/UI Design", "Vercel"],
     architectureSpecs: [
@@ -67,15 +67,63 @@ export const projectsData: Project[] = [
   },
   {
     id: "goodreads-scraper",
-    title: "Goodreads Scraper & GUI",
+    title: "Goodreads Scraper & GUI App",
     category: "automation",
     featured: false,
     tagline: "Coleta e estruturação de dados com interface gráfica (Scrapy + Tkinter)",
-    description: "Programa em Python para extração automatizada de citações e metadados com interface gráfica (Scrapy + Tkinter) para raspagem e estruturação de dados.",
+    description: "Programa em Python para extração automatizada de citações e metadados com interface gráfica intuitiva em Tkinter, validação de dados e exportação personalizável em JSON ou CSV.",
     fullDescription: "Desenvolvido com Scrapy para web scraping de alta velocidade e Tkinter + Pillow para a interface de usuário. Permite definir a quantidade de páginas, validar entradas e acompanhar o progresso em tempo real, entregando uma solução completa sem necessidade de linha de comando.",
     stack: ["Python 3.10", "Scrapy", "Tkinter", "Pillow", "JSON", "CSV", "Web Scraping"],
     badgeText: "Web Scraping & GUI",
     githubUrl: "https://github.com/XxSusuxX/goodreads-scraper"
+  },
+  {
+    id: "wandinha-ebac",
+    title: "Wandinha",
+    category: "web",
+    featured: false,
+    tagline: "Landing Page Temática & UI Design (EBAC)",
+    description: "Landing page desenvolvida para uma fanpage da série Wandinha com foco em geração de tráfego e aperfeiçoamento em front-end na EBAC, com estilização CSS imersiva e UI Design.",
+    fullDescription: "Desenvolvido como uma landing page para uma fanpage da série com o objetivo de gerar tráfego, além de projeto de aperfeiçoamento em front-end na EBAC (Escola Britânica de Artes Criativas e Tecnologia). O desafio consistiu na personalização e adaptação de um layout e arquivo CSS estruturado para criar uma experiência visual envolvente e responsiva sobre a personagem Wandinha Addams.",
+    stack: ["HTML5", "CSS3", "JavaScript", "UI/UX Design", "Vercel"],
+    badgeText: "UI & Front-End",
+    demoUrl: "https://wandinha.vercel.app/"
+  },
+  {
+    id: "calculadora-react-native",
+    title: "Calculadora React Native",
+    category: "web",
+    featured: false,
+    tagline: "Aplicativo Mobile em React Native, Android Studio & Expo",
+    description: "Calculadora mobile desenvolvida com React Native e Expo, emulada no Android Studio. Possui layout responsivo, manipulação de eventos e componentes modulares.",
+    fullDescription: "Aplicativo mobile de calculadora construído com React Native e Expo, testado e emulado via Android Studio. A aplicação é dividida em componentes modulares (App.js, buttons.js, display.js) com manipulação de eventos de clique, formato dinâmico para telas e cálculo em tempo real.",
+    stack: ["React Native", "Expo", "Android Studio", "JavaScript", "npm"],
+    badgeText: "Mobile App",
+    githubUrl: "https://github.com/XxSusuxX/Calculadora-React-Native"
+  },
+  {
+    id: "cadastro-php",
+    title: "Cadastro-PHP",
+    category: "web",
+    featured: false,
+    tagline: "Sistema de Autenticação e Cadastro (PHP, MySQL & JS)",
+    description: "Sistema completo de autenticação e cadastro de usuários composto por formulário interativo, login seguro, validações em JavaScript e área restrita protegida por sessão.",
+    fullDescription: "Desenvolvido de forma independente como projeto freelancer para autenticação e gestão de cadastros. O sistema possui 4 módulos principais: landing page, formulário de cadastro com validações dinâmicas em JavaScript, login e área restrita protegida por sessão com persistência no MySQL via phpMyAdmin.",
+    stack: ["PHP", "MySQL", "phpMyAdmin", "JavaScript", "HTML5", "CSS3"],
+    badgeText: "PHP & MySQL",
+    githubUrl: "https://github.com/XxSusuxX/Cadastro-PHP"
+  },
+  {
+    id: "susu-art-market",
+    title: "Susu - Art Market (Hobby Showcase)",
+    category: "web",
+    featured: false,
+    tagline: "Vitrine estática de arte digital e tradicional com e-commerce simulado",
+    description: "Site para exibição de desenhos e ilustrações (nanquim, fan art e ilustrações estilizadas) com simulação visual de carrinho de compras e navegação responsiva.",
+    fullDescription: "O Susu - Art Market é um site estático construído para apresentar uma coleção pessoal de artes (desenhos tradicionais a lápis/nanquim, fan arts e ilustrações). O projeto simula a experiência de navegação de um e-commerce de arte independente com cabeçalho, história da loja, grade de produtos e simulação de carrinho.",
+    stack: ["HTML5", "CSS3", "JavaScript", "Vercel"],
+    badgeText: "Art Showcase & Web",
+    demoUrl: "https://susu-art-market.vercel.app/"
   }
 ];
 
