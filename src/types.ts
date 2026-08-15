@@ -14,6 +14,9 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   whatsappDemoUrl?: string;
+  instagramUrl?: string;
+  tiktokUrl?: string;
+  socialCallout?: string;
   badgeText?: string;
   featuredOrder?: number;
 }

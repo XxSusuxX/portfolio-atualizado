@@ -50,15 +50,30 @@ export const projectsData: Project[] = [
     id: "carine-nunes-portfolio",
     title: "Carine Nunes — Portfólio de Modelo",
     category: "web",
-    featured: false,
+    featured: true,
+    featuredOrder: 3,
     tagline: "Portfólio Profissional de Modelo Fotográfica & Comercial",
-    description: "Portfólio digital desenvolvido para Carine Nunes (17 anos), modelo em início de carreira em busca de parcerias com marcas virtuais, confecções e lojas de roupas.",
-    fullDescription: "Desenvolvido com foco em alta elegância e apresentação profissional para o mercado da moda. O site destaca ensaios, perfil visual, medidas e canais diretos de contato para marcas virtuais e lojas de roupas que desejam fechar parcerias comerciais, catálogos e campanhas. Se você conhece marcas do segmento ou puder recomendá-la para trabalhos fotográficos e comerciais, visite e compartilhe o portfólio!",
+    description: "Portfólio digital desenvolvido para Carine Nunes (17 anos), modelo em início de carreira em busca de parcerias com marcas virtuais, confecções e lojas de roupas. Conecte-se e siga nas redes!",
+    fullDescription: "Desenvolvido com foco em alta elegância e apresentação profissional para o mercado da moda. O site destaca ensaios fotográficos em alta resolução, perfil visual, medidas corporais e canais diretos de contato para marcas virtuais e lojas de roupas que desejam fechar parcerias comerciais, catálogos e campanhas.\n\n✨ Apoie o trabalho da modelo: Siga o perfil no Instagram (@carine_nunesz) e no TikTok (@carine.nunesz) e compartilhe para novos trabalhos e parcerias!",
     stack: ["React", "TypeScript", "Tailwind CSS", "UI/UX Design", "Vercel"],
-    badgeText: "Moda & Modelo",
+    architectureSpecs: [
+      "Design visual de alta sofisticação com tipografia editorial e layout responsivo mobile-first",
+      "Galeria fotográfica de ensaios com carregamento otimizado de imagens e alta fidelidade",
+      "Apresentação profissional de biografia, medidas corporais e segmentos de atuação (editorial/comercial)",
+      "Integração direta com canais de redes sociais (Instagram, TikTok) e canal de contato via WhatsApp"
+    ],
+    metrics: [
+      { label: "Segmento", value: "Moda & Modelo" },
+      { label: "Redes Sociais", value: "Instagram & TikTok" },
+      { label: "Parcerias", value: "Comercial & Editorial" }
+    ],
+    badgeText: "✨ Moda & Modelo • Destaque",
     demoUrl: "https://carine-nunes.vercel.app/",
+    instagramUrl: "https://www.instagram.com/carine_nunesz/",
+    tiktokUrl: "https://www.tiktok.com/@carine.nunesz",
+    socialCallout: "Siga o Instagram (@carine_nunesz) e TikTok (@carine.nunesz) para apoiar e acompanhar novos ensaios!",
     whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20ou%20recomendar%20uma%20parceria%20para%20o%20portf%C3%B3lio%20da%20Carine%20Nunes."
-     },
+  },
   {
     id: "douradina-multiservicos",
     title: "Douradina MultiServiços",

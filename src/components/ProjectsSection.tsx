@@ -14,11 +14,19 @@ import {
   Code2,
   Bot,
   Github,
-  Sparkles
+  Sparkles,
+  Instagram,
+  Heart
 } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import { Project, ProjectCategory } from '../types';
 import { PetNexusPreview } from './PetNexusPreview';
+
+const TikTokIcon: React.FC<{ className?: string }> = ({ className = "w-3.5 h-3.5" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.36a6.34 6.34 0 0 0-.85-.06A6.34 6.34 0 0 0 3 15.64a6.34 6.34 0 0 0 6.33 6.36 6.34 6.34 0 0 0 6.34-6.36V8.2a8.16 8.16 0 0 0 4.92 1.64V6.39a4.85 4.85 0 0 1-1-.01v.31z" />
+  </svg>
+);
 
 export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
@@ -291,7 +299,7 @@ export const ProjectsSection: React.FC = () => {
                   </div>
 
                   {/* Tech Stack Pills */}
-                  <div className="flex flex-wrap gap-1.5 pt-2">
+                  <div className="flex flex-wrap gap-1.5 pt-1">
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
@@ -301,6 +309,55 @@ export const ProjectsSection: React.FC = () => {
                       </span>
                     ))}
                   </div>
+
+                  {/* Metrics Bar if present */}
+                  {project.metrics && project.metrics.length > 0 && (
+                    <div className="grid grid-cols-3 gap-1.5 pt-1">
+                      {project.metrics.map((m, idx) => (
+                        <div key={idx} className="p-2 rounded-lg bg-zinc-950/80 border border-zinc-800/80 text-center">
+                          <span className="text-[9px] font-mono text-zinc-500 block uppercase truncate">{m.label}</span>
+                          <span className="text-[11px] font-bold text-zinc-200 truncate block">{m.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Social Support Callout on Card if project has instagram/tiktok */}
+                  {(project.instagramUrl || project.tiktokUrl) && (
+                    <div className="p-3 rounded-xl bg-gradient-to-r from-pink-950/40 via-purple-950/30 to-zinc-950 border border-pink-500/30 space-y-2">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-bold text-pink-300 flex items-center gap-1.5">
+                          <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400/40" />
+                          Apoie & Siga as Redes:
+                        </span>
+                        <span className="text-[10px] text-zinc-400 font-mono">@carine_nunesz</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {project.instagramUrl && (
+                          <a
+                            href={project.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-[11px] font-semibold transition-all shadow-sm shadow-pink-950"
+                          >
+                            <Instagram className="w-3.5 h-3.5" />
+                            <span>Instagram</span>
+                          </a>
+                        )}
+                        {project.tiktokUrl && (
+                          <a
+                            href={project.tiktokUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-950 hover:bg-zinc-800 border border-zinc-700 text-white text-[11px] font-semibold transition-all"
+                          >
+                            <TikTokIcon className="w-3.5 h-3.5 text-cyan-400" />
+                            <span>TikTok</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
                 </div>
 
@@ -393,6 +450,50 @@ export const ProjectsSection: React.FC = () => {
               <div className="space-y-5 text-sm text-zinc-300 leading-relaxed">
                 <p>{activeModalProject.fullDescription || activeModalProject.description}</p>
 
+                {/* Social Media CTA Banner in Modal */}
+                {(activeModalProject.instagramUrl || activeModalProject.tiktokUrl) && (
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-pink-950/50 via-purple-950/40 to-zinc-950 border border-pink-500/40 space-y-3">
+                    <div className="flex items-center gap-2.5">
+                      <span className="p-2 rounded-lg bg-pink-500/20 text-pink-400">
+                        <Heart className="w-4 h-4 fill-pink-400/40" />
+                      </span>
+                      <div>
+                        <h4 className="text-xs font-bold text-white uppercase font-mono tracking-wider">
+                          Apoie & Siga a Modelo nas Redes:
+                        </h4>
+                        <p className="text-xs text-zinc-300">
+                          {activeModalProject.socialCallout || "Acompanhe os ensaios oficiais e apoie oportunidades de parcerias com lojas e marcas de roupas!"}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                      {activeModalProject.instagramUrl && (
+                        <a
+                          href={activeModalProject.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-xs font-bold shadow-md shadow-pink-900/30 transition-all hover:scale-105"
+                        >
+                          <Instagram className="w-4 h-4" />
+                          <span>Instagram (@carine_nunesz)</span>
+                        </a>
+                      )}
+                      {activeModalProject.tiktokUrl && (
+                        <a
+                          href={activeModalProject.tiktokUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-700 text-white text-xs font-bold transition-all hover:scale-105"
+                        >
+                          <TikTokIcon className="w-4 h-4 text-cyan-400" />
+                          <span>TikTok (@carine.nunesz)</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {activeModalProject.id === 'petnexus' && (
                   <div className="space-y-3 pt-2 border-t border-zinc-800">
                     <h4 className="text-xs font-bold text-emerald-400 uppercase font-mono tracking-wider flex items-center gap-2">
@@ -419,6 +520,17 @@ export const ProjectsSection: React.FC = () => {
                   </div>
                 )}
 
+                {activeModalProject.metrics && activeModalProject.metrics.length > 0 && (
+                  <div className="grid grid-cols-3 gap-2">
+                    {activeModalProject.metrics.map((m, idx) => (
+                      <div key={idx} className="p-3 rounded-xl bg-zinc-950 border border-zinc-800 text-center">
+                        <span className="text-[10px] font-mono text-zinc-500 block uppercase">{m.label}</span>
+                        <span className="text-xs font-bold text-white block mt-0.5">{m.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <div className="space-y-2">
                   <h4 className="text-xs font-bold text-zinc-400 uppercase font-mono tracking-wider">
                     Tecnologias Utilizadas:
@@ -440,6 +552,28 @@ export const ProjectsSection: React.FC = () => {
                 >
                   Fechar
                 </button>
+                {activeModalProject.instagramUrl && (
+                  <a
+                    href={activeModalProject.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-xs font-semibold shadow-md shadow-pink-900/30 transition-all"
+                  >
+                    <Instagram className="w-3.5 h-3.5" />
+                    <span>Instagram</span>
+                  </a>
+                )}
+                {activeModalProject.tiktokUrl && (
+                  <a
+                    href={activeModalProject.tiktokUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white border border-zinc-700 text-xs font-semibold transition-all"
+                  >
+                    <TikTokIcon className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>TikTok</span>
+                  </a>
+                )}
                 {activeModalProject.demoUrl && (
                   <a
                     href={activeModalProject.demoUrl}
