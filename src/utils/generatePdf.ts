@@ -60,7 +60,9 @@ function buildPdfDocument(): jsPDF {
   y += 4;
 
   // Line 2: Links
-  const contactLine2 = `linkedin.com/in/gabriel-suenaga   |   github.com/xxsusuxx   |   ${profileData.website}`;
+  const cleanLinkedin = profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '');
+  const cleanGithub = profileData.github.replace(/^https?:\/\/(www\.)?/, '');
+  const contactLine2 = `${cleanLinkedin}   |   ${cleanGithub}   |   ${profileData.website}`;
   doc.text(contactLine2, margin, y);
   y += 5.5;
 

@@ -9,8 +9,8 @@ export const profileData: ProfileData = {
   phone: "(44) 99828-9752",
   email: "gabriel.hneus@gmail.com",
   website: "www.gabrielsuenaga.com.br",
-  github: "https://github.com/xxsusuxxs",
-  linkedin: "https://linkedin.com/in/gabrielsuenaga",
+  github: "https://github.com/xxsusuxx",
+  linkedin: "https://linkedin.com/in/gabriel-suenaga",
   instagram: "https://instagram.com/gabrielsu.dev",
   whatsappUrl: "https://wa.me/5544998289752"
 };
@@ -18,28 +18,47 @@ export const profileData: ProfileData = {
 export const projectsData: Project[] = [
   {
     id: "petnexus",
-    title: "PetNexus — SaaS Multi-Tenant",
+    title: "PetNexus — SaaS Multi-Tenant para Pet Shops",
     category: "saas",
     featured: true,
     featuredOrder: 1,
-    tagline: "Plataforma SaaS Multi-Tenant para gestão inteligente de Pet Shops",
-    description: "Arquitetura e desenvolvimento completo de um SaaS para gestão inteligente do ecossistema pet, atuando desde a modelagem do banco de dados relacional (PostgreSQL/Supabase) até o front-end em Next.js.",
-    fullDescription: "O PetNexus foi construído com foco em isolamento de dados por empresa (Multi-Tenancy com RLS), alta performance no front-end com Next.js App Router, validação estrita de esquemas com Zod e autenticação via Supabase Auth. A plataforma unifica agendamentos, estoque, prontuários de pets e financeiro com UX moderna.",
-    stack: ["Next.js (App Router)", "React", "TypeScript", "Supabase", "PostgreSQL", "RLS", "Zod", "Tailwind CSS"],
+    tagline: "Plataforma SaaS White-Label completa e em produção para gestão inteligente de pet shops e clínicas veterinárias. Do banco ao mobile, do admin ao cliente — tudo em tempo real.",
+    description: "SaaS Multi-Tenant full-stack em produção para gestão inteligente de pet shops e clínicas veterinárias. Unifica a Área do Admin (Agenda visual, Operação Ao Vivo em tempo real, PDV, Prontuário, Equipe e Financeiro) e a Área do Cliente/Tutor (Acompanhamento ao vivo, agendamentos online, histórico e fidelidade).",
+    fullDescription: "O PetNexus é um SaaS Multi-Tenant full-stack, construído do zero com Next.js 14 (App Router), TypeScript, Supabase (Auth + RLS + Realtime) e Tailwind CSS. O sistema unifica duas experiências distintas em uma só plataforma:\n\n— Área do Admin (Petshop): Agenda visual (mês/semana/dia), Operação Ao Vivo com sincronização em tempo real via Supabase Realtime, PDV & Caixa, Prontuário Veterinário, Gestão de Clientes e Pets, Escala de Equipe, WhatsApp Central, Financeiro e Automações.\n\n— Área do Cliente (Tutor): Painel de acompanhamento de pets em tempo real, histórico de serviços, notificações push, agendamento online, cadastro de pets com foto, pacotes de serviço e programa de fidelidade.",
+    stack: ["Next.js 14", "App Router", "TypeScript", "React", "Supabase (Auth/RLS/Realtime)", "PostgreSQL 16", "Tailwind CSS", "Zod", "Vercel"],
     architectureSpecs: [
-      "Isolamento Multi-Tenant seguro com Row Level Security (RLS) no Supabase",
-      "Modelagem relacional otimizada no PostgreSQL para agendamentos e prontuários",
-      "Validação estrita end-to-end com Zod e formulários otimizados com React Hook Form",
-      "Desenvolvimento acelerado com IA em Pair-Programming para ciclos rápidos de entrega"
+      "Isolamento Multi-Tenant com RLS no Supabase (dados 100% isolados por tenant_id)",
+      "Sincronização em tempo real (Supabase Realtime + polling de fallback 3s)",
+      "Design System próprio em dark mode (Tailwind CSS, tokens customizados, glassmorphism)",
+      "Mobile-first com bottom navigation adaptativa e modais com rolagem nativa corrigida",
+      "Agenda com visualização mês/semana/dia, agendamentos recorrentes e integração com Operação",
+      "Validação end-to-end com Zod em todos os formulários e APIs",
+      "Middleware de autenticação e proteção de rotas por perfil (admin, groomer, vet, client)",
+      "Sistema de notificações por evento com filtragem por role e autor (anti-auto-notificação)",
+      "Deploy contínuo na Vercel com CI/CD via GitHub"
     ],
     metrics: [
-      { label: "Arquitetura", value: "Multi-Tenant" },
-      { label: "Segurança", value: "Supabase RLS" },
-      { label: "Validação", value: "Zod Schema" }
+      { label: "Status", value: "🟢 Em Produção" },
+      { label: "Arquitetura", value: "Multi-Tenant RLS" },
+      { label: "Sync Engine", value: "Supabase Realtime" }
     ],
-    badgeText: "🚀 Projeto Principal • SaaS",
-    whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Gostaria%20de%20saber%20mais%20sobre%20a%20arquitetura%20do%20PetNexus."
+    badgeText: "🟢 Em Produção • SaaS Principal",
+    demoUrl: "https://white-label-petshop.vercel.app/",
+    whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Gostaria%20de%20saber%20mais%20sobre%20a%20arquitetura%20e%20recursos%20do%20PetNexus%20SaaS."
   },
+  {
+    id: "carine-nunes-portfolio",
+    title: "Carine Nunes — Portfólio de Modelo",
+    category: "web",
+    featured: false,
+    tagline: "Portfólio Profissional de Modelo Fotográfica & Comercial",
+    description: "Portfólio digital desenvolvido para Carine Nunes (17 anos), modelo em início de carreira em busca de parcerias com marcas virtuais, confecções e lojas de roupas.",
+    fullDescription: "Desenvolvido com foco em alta elegância e apresentação profissional para o mercado da moda. O site destaca ensaios, perfil visual, medidas e canais diretos de contato para marcas virtuais e lojas de roupas que desejam fechar parcerias comerciais, catálogos e campanhas. Se você conhece marcas do segmento ou puder recomendá-la para trabalhos fotográficos e comerciais, visite e compartilhe o portfólio!",
+    stack: ["React", "TypeScript", "Tailwind CSS", "UI/UX Design", "Vercel"],
+    badgeText: "Moda & Modelo",
+    demoUrl: "https://carine-nunes.vercel.app/",
+    whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20ou%20recomendar%20uma%20parceria%20para%20o%20portf%C3%B3lio%20da%20Carine%20Nunes."
+     },
   {
     id: "douradina-multiservicos",
     title: "Douradina MultiServiços",
@@ -65,6 +84,7 @@ export const projectsData: Project[] = [
     demoUrl: "https://douradinamultiservicos.vercel.app/",
     whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Douradina%20MultiServi%C3%A7os."
   },
+  
   {
     id: "goodreads-scraper",
     title: "Goodreads Scraper & GUI App",
@@ -75,7 +95,32 @@ export const projectsData: Project[] = [
     fullDescription: "Desenvolvido com Scrapy para web scraping de alta velocidade e Tkinter + Pillow para a interface de usuário. Permite definir a quantidade de páginas, validar entradas e acompanhar o progresso em tempo real, entregando uma solução completa sem necessidade de linha de comando.",
     stack: ["Python 3.10", "Scrapy", "Tkinter", "Pillow", "JSON", "CSV", "Web Scraping"],
     badgeText: "Web Scraping & GUI",
-    githubUrl: "https://github.com/XxSusuxX/goodreads-scraper"
+    githubUrl: "https://github.com/xxsusuxx/goodreads-scraper"
+  },
+
+  {
+    id: "calculadora-react-native",
+    title: "Calculadora React Native",
+    category: "web",
+    featured: false,
+    tagline: "Aplicativo Mobile em React Native, Android Studio & Expo",
+    description: "Calculadora mobile desenvolvida com React Native e Expo, emulada no Android Studio. Possui layout responsivo, manipulação de eventos e componentes modulares.",
+    fullDescription: "Aplicativo mobile de calculadora construído com React Native e Expo, testado e emulado via Android Studio. A aplicação é dividida em componentes modulares (App.js, buttons.js, display.js) com manipulação de eventos de clique, formato dinâmico para telas e cálculo em tempo real.",
+    stack: ["React Native", "Expo", "Android Studio", "JavaScript", "npm"],
+    badgeText: "Mobile App",
+    githubUrl: "https://github.com/xxsusuxx/Calculadora-React-Native"
+  },
+  {
+    id: "cadastro-php",
+    title: "Cadastro-PHP",
+    category: "web",
+    featured: false,
+    tagline: "Sistema de Autenticação e Cadastro (PHP, MySQL & JS)",
+    description: "Sistema completo de autenticação e cadastro de usuários composto por formulário interativo, login seguro, validações em JavaScript e área restrita protegida por sessão.",
+    fullDescription: "Desenvolvido de forma independente como projeto freelancer para autenticação e gestão de cadastros. O sistema possui 4 módulos principais: landing page, formulário de cadastro com validações dinâmicas em JavaScript, login e área restrita protegida por sessão com persistência no MySQL via phpMyAdmin.",
+    stack: ["PHP", "MySQL", "phpMyAdmin", "JavaScript", "HTML5", "CSS3"],
+    badgeText: "PHP & MySQL",
+    githubUrl: "https://github.com/xxsusuxx/Cadastro-PHP"
   },
   {
     id: "wandinha-ebac",
@@ -88,30 +133,6 @@ export const projectsData: Project[] = [
     stack: ["HTML5", "CSS3", "JavaScript", "UI/UX Design", "Vercel"],
     badgeText: "UI & Front-End",
     demoUrl: "https://wandinha.vercel.app/"
-  },
-  {
-    id: "calculadora-react-native",
-    title: "Calculadora React Native",
-    category: "web",
-    featured: false,
-    tagline: "Aplicativo Mobile em React Native, Android Studio & Expo",
-    description: "Calculadora mobile desenvolvida com React Native e Expo, emulada no Android Studio. Possui layout responsivo, manipulação de eventos e componentes modulares.",
-    fullDescription: "Aplicativo mobile de calculadora construído com React Native e Expo, testado e emulado via Android Studio. A aplicação é dividida em componentes modulares (App.js, buttons.js, display.js) com manipulação de eventos de clique, formato dinâmico para telas e cálculo em tempo real.",
-    stack: ["React Native", "Expo", "Android Studio", "JavaScript", "npm"],
-    badgeText: "Mobile App",
-    githubUrl: "https://github.com/XxSusuxX/Calculadora-React-Native"
-  },
-  {
-    id: "cadastro-php",
-    title: "Cadastro-PHP",
-    category: "web",
-    featured: false,
-    tagline: "Sistema de Autenticação e Cadastro (PHP, MySQL & JS)",
-    description: "Sistema completo de autenticação e cadastro de usuários composto por formulário interativo, login seguro, validações em JavaScript e área restrita protegida por sessão.",
-    fullDescription: "Desenvolvido de forma independente como projeto freelancer para autenticação e gestão de cadastros. O sistema possui 4 módulos principais: landing page, formulário de cadastro com validações dinâmicas em JavaScript, login e área restrita protegida por sessão com persistência no MySQL via phpMyAdmin.",
-    stack: ["PHP", "MySQL", "phpMyAdmin", "JavaScript", "HTML5", "CSS3"],
-    badgeText: "PHP & MySQL",
-    githubUrl: "https://github.com/XxSusuxX/Cadastro-PHP"
   },
   {
     id: "susu-art-market",

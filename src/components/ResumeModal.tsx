@@ -40,10 +40,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   };
 
   const handleCopyText = () => {
+    const cleanLinkedin = profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '');
+    const cleanGithub = profileData.github.replace(/^https?:\/\/(www\.)?/, '');
     const cvText = `
 ${profileData.name} - ${profileData.roleTitle}
 Contato: ${profileData.phone} | ${profileData.location} | ${profileData.email}
-LinkedIn: linkedin.com/in/gabriel-suenaga | GitHub: github.com/xxsusuxx | Portfolio: ${profileData.website}
+LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfolio: ${profileData.website}
 
 01. PERFIL PROFISSIONAL
 ${profileData.bioText}
@@ -166,10 +168,10 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, APIs REST,
               {/* Social / Portfolio Links */}
               <div className="flex flex-wrap gap-4 text-xs font-mono pt-1 text-zinc-300">
                 <a href={profileData.linkedin} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> linkedin.com/in/gabriel-suenaga
+                  <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> {profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '')}
                 </a>
                 <a href={profileData.github} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <Github className="w-3.5 h-3.5 text-indigo-400" /> github.com/xxsusuxx
+                  <Github className="w-3.5 h-3.5 text-indigo-400" /> {profileData.github.replace(/^https?:\/\/(www\.)?/, '')}
                 </a>
                 <a href={`https://${profileData.website}`} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
                   <Globe className="w-3.5 h-3.5 text-indigo-400" /> {profileData.website}

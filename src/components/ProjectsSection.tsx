@@ -89,18 +89,34 @@ export const ProjectsSection: React.FC = () => {
                   <span className="px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold uppercase tracking-wider shadow-md">
                     Destaque Principal • SaaS
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 text-xs font-semibold border border-emerald-800/40">
-                    Em Desenvolvimento Ativo
+                  <span className="px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold border border-emerald-500/40 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    🟢 Em Produção
                   </span>
                 </div>
 
-                <h3 className="text-3xl sm:text-4xl font-bold text-white font-display">
-                  PetNexus <span className="text-zinc-400 font-normal text-2xl">— SaaS Multi-Tenant</span>
-                </h3>
+                <div>
+                  <h3 className="text-2xl sm:text-4xl font-bold text-white font-display">
+                    PetNexus <span className="text-zinc-400 font-normal text-xl sm:text-2xl">— SaaS Multi-Tenant para Pet Shops</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-indigo-300 font-medium mt-1">
+                    Plataforma SaaS White-Label completa e em produção para gestão inteligente de pet shops e clínicas veterinárias. Do banco ao mobile, do admin ao cliente — tudo em tempo real.
+                  </p>
+                </div>
 
-                <p className="text-zinc-300 text-base leading-relaxed">
-                  Arquitetura e desenvolvimento de um SaaS para gestão inteligente de pet shops e clínicas. Atuando de ponta a ponta: desde a modelagem relacional de banco de dados no PostgreSQL/Supabase com Row Level Security (RLS) até o front-end otimizado em Next.js.
-                </p>
+                <div className="text-zinc-300 text-xs sm:text-sm leading-relaxed space-y-2">
+                  <p>
+                    O <strong>PetNexus</strong> é um SaaS Multi-Tenant full-stack, construído do zero com <strong>Next.js 14 (App Router)</strong>, <strong>TypeScript</strong>, <strong>Supabase (Auth + RLS + Realtime)</strong> e <strong>Tailwind CSS</strong>. O sistema unifica duas experiências distintas em uma só plataforma:
+                  </p>
+                  <ul className="space-y-1 text-xs text-zinc-300 pl-2 border-l-2 border-indigo-500/40">
+                    <li>
+                      <strong className="text-white">— Área do Admin (Petshop):</strong> Agenda visual (mês/semana/dia), Operação Ao Vivo com sincronização em tempo real via Supabase Realtime, PDV & Caixa, Prontuário Veterinário, Gestão de Clientes e Pets, Escala de Equipe, WhatsApp Central, Financeiro e Automações.
+                    </li>
+                    <li>
+                      <strong className="text-white">— Área do Cliente (Tutor):</strong> Painel de acompanhamento de pets em tempo real, histórico de serviços, notificações push, agendamento online, cadastro de pets com foto, pacotes de serviço e programa de fidelidade.
+                    </li>
+                  </ul>
+                </div>
 
                 {/* Stack Tags */}
                 <div className="space-y-2">
@@ -108,10 +124,20 @@ export const ProjectsSection: React.FC = () => {
                     Stack Tecnológica:
                   </span>
                   <div className="flex flex-wrap gap-2">
-                    {["Next.js (App Router)", "TypeScript", "React", "Supabase (Auth/RLS)", "PostgreSQL", "Zod", "Tailwind CSS"].map((tech) => (
+                    {[
+                      "Next.js 14",
+                      "App Router",
+                      "TypeScript",
+                      "React",
+                      "Supabase (Auth/RLS/Realtime)",
+                      "PostgreSQL 16",
+                      "Tailwind CSS",
+                      "Zod",
+                      "Vercel"
+                    ].map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-lg bg-zinc-950 border border-zinc-800 text-indigo-300 text-xs font-mono font-medium"
+                        className="px-2.5 py-1 rounded-lg bg-zinc-950 border border-zinc-800 text-indigo-300 text-xs font-mono font-medium"
                       >
                         {tech}
                       </span>
@@ -123,26 +149,40 @@ export const ProjectsSection: React.FC = () => {
                 <div className="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800/80 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-wider font-mono">
                     <Database className="w-4 h-4 text-indigo-400" />
-                    <span>Destaques da Arquitetura:</span>
+                    <span>Features Principais & Arquitetura:</span>
                   </div>
                   <ul className="text-xs text-zinc-300 space-y-1.5 font-sans">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                      <span><strong>Isolamento Multi-Tenant seguro:</strong> Dados isolados rigorosamente por tenant via RLS no Supabase.</span>
+                      <span><strong>Isolamento Multi-Tenant com RLS:</strong> Dados 100% isolados por tenant_id no Supabase PostgreSQL.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                      <span><strong>Validação End-to-End com Zod:</strong> Prevenção de inconsistências no envio de formulários e APIs.</span>
+                      <span><strong>Sincronização em tempo real:</strong> Supabase Realtime com fallback inteligente de polling 3s.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                      <span><strong>Pair-Programming com IA:</strong> Ciclo acelerado de decisões arquiteturais e refatoração limpa.</span>
+                      <span><strong>Design System próprio Dark Mode:</strong> Tailwind CSS com tokens customizados, glassmorphism e mobile-first.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span><strong>Validação End-to-End com Zod & Auth Middleware:</strong> Proteção estrita de rotas (admin, groomer, vet, client).</span>
                     </li>
                   </ul>
                 </div>
 
                 {/* Action buttons */}
                 <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <a
+                    href="https://white-label-petshop.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/30 transition-all hover:scale-105 active:scale-95"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Ver Sistema ao Vivo →</span>
+                  </a>
+
                   <button
                     onClick={() => setActiveModalProject(projectsData[0])}
                     className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 transition-all"
@@ -151,10 +191,10 @@ export const ProjectsSection: React.FC = () => {
                   </button>
 
                   <a
-                    href="https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Quero%20conhecer%20mais%20detalhes%20do%20PetNexus."
+                    href="https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Quero%20conhecer%20mais%20detalhes%20do%20PetNexus%20SaaS."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-all"
                   >
                     <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Solicitar Apresentação</span>
@@ -170,7 +210,8 @@ export const ProjectsSection: React.FC = () => {
                     <span className="flex items-center gap-1.5 text-indigo-400">
                       <ShieldCheck className="w-4 h-4" /> petnexus-db-schema.sql
                     </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/40">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/40 font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                       RLS ACTIVE
                     </span>
                   </div>
@@ -182,13 +223,13 @@ export const ProjectsSection: React.FC = () => {
                     <p className="pl-3 text-zinc-400">FOR ALL USING (</p>
                     <p className="pl-6 text-emerald-400">tenant_id = auth.jwt() -&gt;&gt; 'tenant_id'</p>
                     <p className="pl-3 text-zinc-400">);</p>
-                    <p className="text-zinc-500 pt-1">// Next.js Server Action + Zod</p>
-                    <p className="text-indigo-300">const <span className="text-cyan-300">PetSchema</span> = z.object(&#123; name: z.string().min(2) &#125;);</p>
+                    <p className="text-zinc-500 pt-1">// Next.js 14 App Router + Supabase Realtime</p>
+                    <p className="text-indigo-300">const <span className="text-cyan-300">channel</span> = supabase.channel(<span className="text-amber-300">'operacao-live'</span>);</p>
                   </div>
 
                   <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-between text-[10px] text-zinc-400">
                     <span>Database: PostgreSQL 16</span>
-                    <span>Auth: Supabase OAuth/JWT</span>
+                    <span className="text-emerald-400">Realtime Engine: Active</span>
                   </div>
                 </div>
               </div>
@@ -206,7 +247,7 @@ export const ProjectsSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-4 text-[11px]">
                 <span className="text-zinc-500">PostgreSQL 16 Multi-Tenant</span>
-                <span className="text-emerald-400 font-bold">● Admin Area Under Active Dev</span>
+                <span className="text-emerald-400 font-bold">● Sistema em Produção · Vercel · Supabase Realtime</span>
               </div>
             </div>
           </motion.div>
@@ -280,7 +321,7 @@ export const ProjectsSection: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-medium transition-all shadow-sm shadow-indigo-900/20"
-                        title="Acessar projeto em produção (Live Demo)"
+                        title="Acessar projeto em produção"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         <span>Ver Site</span>
@@ -407,7 +448,7 @@ export const ProjectsSection: React.FC = () => {
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    <span>Acessar Site (Live Demo)</span>
+                    <span>Acessar Site</span>
                   </a>
                 )}
                 {activeModalProject.githubUrl && (
