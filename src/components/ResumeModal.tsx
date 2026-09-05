@@ -248,4 +248,120 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                       <span>Desenvolvimento e arquitetura completa da plataforma SaaS PetNexus utilizando Next.js, TypeScript e Supabase.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Criação de scripts e robôs em Python para web scraping e automação de processos comerciais para empresas parceiras.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Atendimento Técnico / Suporte */}
+                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
+                  <div className="flex flex-wrap justify-between items-start gap-2">
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Atendente Técnico de TI</h3>
+                      <p className="text-xs font-semibold text-indigo-400">Virtual Tec Sistemas • Douradina - PR</p>
+                    </div>
+                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                      Março 2021 – Julho 2021
+                    </span>
+                  </div>
+                  <ul className="space-y-1 text-xs text-zinc-300">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Atendimento presencial focado em suporte técnico, diagnóstico de chamados de hardware/software e orientação a usuários.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Desenvolvimento de comunicação clara e empática, traduzindo necessidades técnicas complexas para clientes finais.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Gazin - Liderança */}
+                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
+                  <div className="flex flex-wrap justify-between items-start gap-2">
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Líder de Setor e Operador de Qualidade</h3>
+                      <p className="text-xs font-semibold text-indigo-400">Gazin Colchões • Douradina - PR</p>
+                    </div>
+                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                      Maio 2024 – Março 2025
+                    </span>
+                  </div>
+                  <ul className="space-y-1 text-xs text-zinc-300">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Liderança de equipe no turno noturno, com responsabilidade direta pela organização de tarefas, controle de qualidade e atingimento de metas.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Tomada de decisão rápida sob pressão e solução imediata de imprevistos na linha de produção.</span>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
+            {/* 04. Formação Acadêmica */}
+            <div className="space-y-2 cv-section-block">
+              <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
+                <span>04.</span> Formação Acadêmica
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                <div className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
+                  <div className="flex justify-between items-start gap-2">
+                    <h3 className="text-xs font-bold text-white font-display">Técnico em Desenvolvimento de Sistemas</h3>
+                    <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">2022 – 2023</span>
+                  </div>
+                  <p className="text-[11px] font-semibold text-indigo-400">Colégio Estadual Cleoracy Aparecida Gil (Destaque da Turma)</p>
+                </div>
+
+                <div className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
+                  <div className="flex justify-between items-start gap-2">
+                    <h3 className="text-xs font-bold text-white font-display">Engenheiro Front-End</h3>
+                    <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">2023 – 2024</span>
+                  </div>
+                  <p className="text-[11px] font-semibold text-indigo-400">EBAC - Escola Britânica de Artes Criativas e Tecnologia</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 05. Principais Competências */}
+            <div className="space-y-2 pt-2 border-t border-zinc-800 cv-section-block">
+              <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
+                <span>05.</span> Principais Competências
+              </h2>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {[
+                  "Python",
+                  "JavaScript / TypeScript",
+                  "React / Next.js",
+                  "APIs REST & Supabase",
+                  "Web Scraping (Scrapy/Selenium)",
+                  "Tailwind CSS",
+                  "Resolução de Problemas",
+                  "Atendimento ao Cliente & Suporte SaaS",
+                  "Liderança & Eficiência Operacional"
+                ].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-[11px] font-medium text-indigo-300 font-mono"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer Notice */}
+            <div className="pt-3 border-t border-zinc-900 text-center text-[11px] text-zinc-400 font-mono cv-section-block">
+              Gabriel Suenaga • Douradina - PR • {profileData.phone} • {profileData.email}
+            </div>
+
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+};
