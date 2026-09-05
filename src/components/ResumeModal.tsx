@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   FileText
 } from 'lucide-react';
-import { profileData, experiencesData, educationData, projectsData } from '../data/portfolioData';
+import { profileData, educationData } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -32,17 +32,17 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     {
       id: 'petnexus',
       title: 'PetNexus — Sistema SaaS de Gestão para Pet Shops',
-      description: 'Arquitetura e desenvolvimento completo de uma plataforma em nuvem para automação e gestão de pet shops. Inclui controle financeiro, agendamentos sem conflito, gestão de caixa e portal do tutor.'
+      description: 'Arquitetura e desenvolvimento completo de uma plataforma em nuvem para gestão de pet shops. Inclui controle financeiro, agendamentos, caixa e portal do tutor.'
     },
     {
       id: 'goodreads-scraper',
-      title: 'Goodreads Scraper & GUI (Automação)',
-      description: 'Aplicação em Python para extração e estruturação automatizada de dados na web utilizando Scrapy e interface gráfica Tkinter. Conta com tratamento de exceções e exportação em JSON/CSV.'
+      title: 'Goodreads Scraper & GUI (Automação em Python)',
+      description: 'Aplicação em Python para extração automatizada de dados na web utilizando Scrapy e interface gráfica Tkinter com exportação estruturada.'
     },
     {
       id: 'douradina-multiservicos',
       title: 'Hub de Serviços e Automações Locais',
-      description: 'Desenvolvimento de ecossistemas web e integração de fluxos automatizados via API para estabelecimentos comerciais e prestadores de serviço.'
+      description: 'Desenvolvimento de ecossistemas web e integração de fluxos automatizados para estabelecimentos comerciais.'
     }
   ];
 
@@ -59,34 +59,35 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     const cleanLinkedin = profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '');
     const cleanGithub = profileData.github.replace(/^https?:\/\/(www\.)?/, '');
     const cvText = `
-${profileData.name} - Desenvolvedor de Software | Automação & Projetos
+${profileData.name} - Desenvolvedor de Software | Criador do PetNexus
 Contato: ${profileData.phone} | ${profileData.location} | ${profileData.email}
 LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfólio: ${profileData.website}
 
 01. PERFIL PROFISSIONAL
-Desenvolvedor de Software e criador do PetNexus (SaaS), com forte bagagem em automação de processos, desenvolvimento web e suporte técnico. Experiência na identificação de gargalos operacionais e na criação de soluções digitais eficientes utilizando Python, JavaScript, TypeScript e Next.js. Histórico comprovado de disciplina, liderança de equipe sob pressão e facilidade de comunicação.
+Desenvolvedor de Software e criador de soluções focadas em automação e eficiência. Trajetória marcada por forte ética de trabalho, liderança operacional e capacidade de resolução prática de problemas em ambientes dinâmicos. Domínio em criação de sistemas web (Next.js, TypeScript, Python), automações e atendimento técnico ao cliente.
 
 02. PROJETOS PRINCIPAIS
 • PetNexus (SaaS): Plataforma completa para gestão e agendamento de pet shops.
-• Goodreads Scraper & GUI: Automação em Python com interface intuitiva para extração de dados.
-• Hub de Soluções e Automações: Desenvolvimento web e integração de bots via APIs.
+• Goodreads Scraper & GUI: Automação em Python com interface gráfica para extração de dados.
+• Hub de Soluções e Automações: Desenvolvimento web e integração de fluxos comerciais.
 
 03. EXPERIÊNCIA PROFISSIONAL
-• Fundador & Desenvolvedor (2025 – Atual) | Suenaga Automações & PetNexus
-  - Arquitetura de software, desenvolvimento de produtos digitais e integração de APIs.
-• Atendente Técnico & Suporte (2021) | Virtual Tec Sistemas
-  - Atendimento consultivo, diagnóstico de hardware/software e suporte técnico centrado no cliente.
-• Operador Noturno & Líder de Equipe (2024 – 2025) | Gazin Colchões
-  - Gestão de fluxo de produção, liderança de setor noturno e resolução proativa de problemas.
+• Desenvolvedor de Software & Fundador (Maio 2025 – Atual) | Suenaga Automações
+  - Arquitetura de software, desenvolvimento de produtos digitais (PetNexus) e automações.
+• Operador de Espumação (Noturno) (Maio 2024 – Março 2025) | Gazin Colchões
+  - Responsável direto pela produção e controle de qualidade no turno da noite.
+  - Liderança de equipe no setor, organização de tarefas e resolução de imprevistos em ambiente industrial sob pressão.
+• Auxiliar Carga e Descarga (Junho 2023 – Setembro 2023) | Gazin
+  - Gestão de fluxo de logística, organização de depósitos, agilidade e trabalho em equipe em ritmo acelerado.
+• Atendente Técnico – Loja de Informática (Março 2021 – Julho 2021) | Virtual Tec Sistemas
+  - Atendimento presencial a clientes, suporte técnico e auxílio na resolução de dúvidas e problemas de informática.
 
 04. FORMAÇÃO ACADÊMICA
-• Técnico em Desenvolvimento de Sistemas | Colégio Estadual Cleoracy Aparecida Gil (2022 - 2023)
-• Engenheiro Front-end | EBAC - Escola Britânica de Artes Criativas e Tecnologia (2023 - 2024)
+• Técnico em Desenvolvimento de Sistemas (2022 - 2023) - Colégio Estadual Cleoracy Aparecida Gil
+• Engenheiro Front-end (2023 - 2024) - EBAC
 
 05. PRINCIPAIS COMPETÊNCIAS
-Linguagens/Stack: Python, JavaScript, TypeScript, React, Next.js, HTML/CSS, Tailwind CSS.
-Automação & Dados: Web Scraping (Scrapy, Selenium), APIs REST, Supabase, PostgreSQL, Tkinter.
-Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimento ao Cliente, Métricas & CX.
+Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Suporte Técnico, Resolução de Problemas, Liderança Operacional, Trabalho em Equipe.
     `.trim();
 
     navigator.clipboard.writeText(cvText);
@@ -104,7 +105,7 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
           transition={{ duration: 0.25 }}
           className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
         >
-          {/* Modal Header Controls */}
+          {/* Controls Bar */}
           <div className="no-print p-4 sm:p-5 bg-zinc-900 border-b border-zinc-800 flex flex-wrap items-center justify-between gap-3 sticky top-0 z-20">
             <div className="flex items-center gap-2">
               <div className="p-2 rounded-lg bg-indigo-950 text-indigo-400 border border-indigo-800/50">
@@ -158,10 +159,10 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
             </div>
           </div>
 
-          {/* Document Body */}
+          {/* Document Content */}
           <div className="overflow-y-auto p-6 sm:p-10 print:p-0 space-y-6 print:space-y-4 bg-zinc-950 text-zinc-200 printable-cv font-sans">
             
-            {/* Header / Personal Info */}
+            {/* Personal Info Header */}
             <div className="border-b border-zinc-800 pb-5 print:pb-3 space-y-3 print:space-y-2 cv-section-block">
               <div className="flex flex-wrap justify-between items-start gap-4">
                 <div>
@@ -169,7 +170,7 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                     {profileData.name}
                   </h1>
                   <p className="text-lg print:text-sm font-bold text-indigo-400 mt-1 font-display">
-                    Desenvolvedor de Software | Automação & Criador de Produtos Digital
+                    Desenvolvedor de Software | Criador do PetNexus
                   </p>
                 </div>
                 <div className="text-xs font-mono text-zinc-400 space-y-1 sm:text-right">
@@ -185,7 +186,7 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* Links */}
               <div className="flex flex-wrap gap-4 text-xs font-mono pt-1 text-zinc-300">
                 <a href={profileData.linkedin} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
                   <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> {profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '')}
@@ -205,14 +206,14 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                 <span>01.</span> Perfil Profissional
               </h2>
               <p className="text-xs sm:text-sm print:text-xs text-zinc-300 leading-relaxed font-normal">
-                Desenvolvedor de Software focado no desenvolvimento de soluções digitais, sistemas web e automações de processos. Experiência na concepção e construção de produtos SaaS do zero (como o PetNexus), integrando interfaces modernas em Next.js a automações em Python. Apresento forte capacidade analítica para resolução de problemas, histórico de liderança de equipe em ambiente sob pressão e facilidade de comunicação para suporte técnico e atendimento ao cliente.
+                Desenvolvedor de Software e criador de soluções tecnológicas focadas em eficiência operacional e automação. Trajetória profissional marcada por resiliência, liderança de equipe em ambiente industrial sob pressão e transição focada para a tecnologia. Experiência na criação do sistema SaaS PetNexus do zero, desenvolvimento de automações em Python/TypeScript e histórico prático em atendimento técnico ao cliente.
               </p>
             </div>
 
-            {/* 02. Projetos Principais */}
+            {/* 02. Projetos */}
             <div className="space-y-2.5 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
-                <span>02.</span> Projetos de Software em Destaque
+                <span>02.</span> Projetos Principais
               </h2>
               <div className="grid grid-cols-1 gap-2.5">
                 {mainProjects.map((proj) => (
@@ -224,19 +225,19 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
               </div>
             </div>
 
-            {/* 03. Experiência Profissional */}
+            {/* 03. Experiência Profissional (Exatamente do LinkedIn) */}
             <div className="space-y-3 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>03.</span> Experiência Profissional
               </h2>
               <div className="space-y-3">
 
-                {/* Projeto Próprio / Dev */}
+                {/* 1. Suenaga Automações */}
                 <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
                   <div className="flex flex-wrap justify-between items-start gap-2">
                     <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Fundador & Desenvolvedor de Software</h3>
-                      <p className="text-xs font-semibold text-indigo-400">Suenaga Automações & PetNexus • Douradina - PR</p>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Desenvolvedor de Software & Fundador</h3>
+                      <p className="text-xs font-semibold text-indigo-400">Suenaga Automações • Douradina - PR</p>
                     </div>
                     <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
                       Maio 2025 – Atual
@@ -245,43 +246,16 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                   <ul className="space-y-1 text-xs text-zinc-300">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Desenvolvimento e arquitetura completa da plataforma SaaS PetNexus utilizando Next.js, TypeScript e Supabase.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Criação de scripts e robôs em Python para web scraping e automação de processos comerciais para empresas parceiras.</span>
+                      <span>Desenvolvimento do SaaS PetNexus e soluções de automação comercial com Next.js, Python e Supabase.</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* Atendimento Técnico / Suporte */}
+                {/* 2. Gazin - Operador de Espumação (Noturno) */}
                 <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
                   <div className="flex flex-wrap justify-between items-start gap-2">
                     <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Atendente Técnico de TI</h3>
-                      <p className="text-xs font-semibold text-indigo-400">Virtual Tec Sistemas • Douradina - PR</p>
-                    </div>
-                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
-                      Março 2021 – Julho 2021
-                    </span>
-                  </div>
-                  <ul className="space-y-1 text-xs text-zinc-300">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Atendimento presencial focado em suporte técnico, diagnóstico de chamados de hardware/software e orientação a usuários.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Desenvolvimento de comunicação clara e empática, traduzindo necessidades técnicas complexas para clientes finais.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Gazin - Liderança */}
-                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
-                  <div className="flex flex-wrap justify-between items-start gap-2">
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Líder de Setor e Operador de Qualidade</h3>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Operador de Espumação (Noturno)</h3>
                       <p className="text-xs font-semibold text-indigo-400">Gazin Colchões • Douradina - PR</p>
                     </div>
                     <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
@@ -291,11 +265,49 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                   <ul className="space-y-1 text-xs text-zinc-300">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Liderança de equipe no turno noturno, com responsabilidade direta pela organização de tarefas, controle de qualidade e atingimento de metas.</span>
+                      <span>Operação de maquinário, responsabilidade direta sobre produção, abastecimento e controle de qualidade.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Tomada de decisão rápida sob pressão e solução imediata de imprevistos na linha de produção.</span>
+                      <span>Liderança da equipe no turno da noite, distribuição de tarefas, tomada de decisão e resolução de imprevistos sob pressão.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 3. Gazin - Auxiliar Carga e Descarga */}
+                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
+                  <div className="flex flex-wrap justify-between items-start gap-2">
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Auxiliar Carga e Descarga</h3>
+                      <p className="text-xs font-semibold text-indigo-400">Gazin • Douradina - PR</p>
+                    </div>
+                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                      Junho 2023 – Setembro 2023
+                    </span>
+                  </div>
+                  <ul className="space-y-1 text-xs text-zinc-300">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Atuação na rotina logística de transporte e organização de depósito, com foco em agilidade, atenção aos detalhes e trabalho em equipe.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 4. Virtual Tec Sistemas - Atendente Técnico */}
+                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
+                  <div className="flex flex-wrap justify-between items-start gap-2">
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Atendente Técnico – Loja de Informática</h3>
+                      <p className="text-xs font-semibold text-indigo-400">Virtual Tec Sistemas • Douradina - PR</p>
+                    </div>
+                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                      Março 2021 – Julho 2021
+                    </span>
+                  </div>
+                  <ul className="space-y-1 text-xs text-zinc-300">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span>Atendimento presencial a clientes, suporte técnico e auxílio na resolução de dúvidas e problemas de informática.</span>
                     </li>
                   </ul>
                 </div>
@@ -314,7 +326,7 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
                     <h3 className="text-xs font-bold text-white font-display">Técnico em Desenvolvimento de Sistemas</h3>
                     <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">2022 – 2023</span>
                   </div>
-                  <p className="text-[11px] font-semibold text-indigo-400">Colégio Estadual Cleoracy Aparecida Gil (Destaque da Turma)</p>
+                  <p className="text-[11px] font-semibold text-indigo-400">Colégio Estadual Cleoracy Aparecida Gil</p>
                 </div>
 
                 <div className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
@@ -327,22 +339,22 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
               </div>
             </div>
 
-            {/* 05. Principais Competências */}
+            {/* 05. Competências */}
             <div className="space-y-2 pt-2 border-t border-zinc-800 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>05.</span> Principais Competências
               </h2>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {[
+                  "Desenvolvimento de Software",
                   "Python",
                   "JavaScript / TypeScript",
                   "React / Next.js",
-                  "APIs REST & Supabase",
-                  "Web Scraping (Scrapy/Selenium)",
-                  "Tailwind CSS",
+                  "Suporte Técnico & Atendimento",
+                  "Liderança Operacional",
                   "Resolução de Problemas",
-                  "Atendimento ao Cliente & Suporte SaaS",
-                  "Liderança & Eficiência Operacional"
+                  "Trabalho em Equipe",
+                  "Automação de Processos"
                 ].map((skill) => (
                   <span
                     key={skill}
@@ -354,7 +366,7 @@ Soft Skills & Suporte: Resolução de Problemas, Liderança de Equipe, Atendimen
               </div>
             </div>
 
-            {/* Footer Notice */}
+            {/* Footer */}
             <div className="pt-3 border-t border-zinc-900 text-center text-[11px] text-zinc-400 font-mono cv-section-block">
               Gabriel Suenaga • Douradina - PR • {profileData.phone} • {profileData.email}
             </div>
