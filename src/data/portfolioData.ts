@@ -4,7 +4,7 @@ export const profileData: ProfileData = {
   name: "Gabriel Suenaga",
   roleTitle: "Desenvolvedor de Software & CEO",
   subtitle: "Criador do PetNexus (SaaS Multi-Tenant) e especialista em Next.js, TypeScript e automações B2B.",
-  bioText: "Desenvolvedor Full-Stack e Criador do PetNexus (SaaS Multi-Tenant). Especialista em Next.js, React, TypeScript, PostgreSQL (Supabase) e automações B2B com Python. Concilio determinação diária e aceleração por IA com foco em código limpo, autonomia e impacto no negócio.",
+  bioText: "Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus, especialista em desenvolvimento web moderno (Next.js/TypeScript), automações de mídia/vídeo com IA e atendimento técnico.",
   location: "Douradina, PR - Brasil",
   phone: "(44) 99828-9752",
   email: "gabriel.hneus@gmail.com",
@@ -50,8 +50,7 @@ export const projectsData: Project[] = [
     id: "carine-nunes-portfolio",
     title: "Carine Nunes — Portfólio de Modelo",
     category: "web",
-    featured: true,
-    featuredOrder: 3,
+    featured: false,
     tagline: "Portfólio Profissional de Modelo Fotográfica & Comercial",
     description: "Portfólio digital desenvolvido para Carine Nunes (17 anos), modelo em início de carreira em busca de parcerias com marcas virtuais, confecções e lojas de roupas. Conecte-se e siga nas redes!",
     fullDescription: "Desenvolvido com foco em alta elegância e apresentação profissional para o mercado da moda. O site destaca ensaios fotográficos em alta resolução, perfil visual, medidas corporais e canais diretos de contato para marcas virtuais e lojas de roupas que desejam fechar parcerias comerciais, catálogos e campanhas.\n\n✨ Apoie o trabalho da modelo: Siga o perfil no Instagram (@carine_nunesz) e no TikTok (@carine.nunesz) e compartilhe para novos trabalhos e parcerias!",
@@ -67,12 +66,36 @@ export const projectsData: Project[] = [
       { label: "Redes Sociais", value: "Instagram & TikTok" },
       { label: "Parcerias", value: "Comercial & Editorial" }
     ],
-    badgeText: "✨ Moda & Modelo • Destaque",
+    badgeText: "✨ Moda & Modelo",
     demoUrl: "https://carine-nunes.vercel.app/",
     instagramUrl: "https://www.instagram.com/carine_nunesz/",
     tiktokUrl: "https://www.tiktok.com/@carine.nunesz",
     socialCallout: "Siga o Instagram (@carine_nunesz) e TikTok (@carine.nunesz) para apoiar e acompanhar novos ensaios!",
     whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20ou%20recomendar%20uma%20parceria%20para%20o%20portf%C3%B3lio%20da%20Carine%20Nunes."
+  },
+  {
+    id: "automacao-youtube-ia",
+    title: "Automação de Conteúdo & Canais no YouTube (IA)",
+    category: "automation",
+    featured: true,
+    featuredOrder: 3,
+    tagline: "Pipelines e automações inteligentes para produção e gestão de canais no YouTube",
+    description: "Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados.",
+    fullDescription: "Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados. Inclui integração com APIs de IA para roteirização e síntese, manipulação audiovisual automatizada via Python e FFmpeg, pipelines de legendas e distribuição.",
+    stack: ["Python", "IA Generativa", "FFmpeg", "Automação de Vídeo", "APIs de IA"],
+    architectureSpecs: [
+      "Pipelines em Python para automação de roteirização e síntese de voz neural",
+      "Processamento e edição programática de vídeo e áudio utilizando FFmpeg",
+      "Automação de renderização em lote, geração de legendas dinâmicas e thumbnails",
+      "Otimização e aceleração do ciclo de pós-produção e publicação para canais digitais"
+    ],
+    metrics: [
+      { label: "Área", value: "IA & Automação" },
+      { label: "Mídia", value: "Vídeo & Áudio" },
+      { label: "Fluxo", value: "Automatizado" }
+    ],
+    badgeText: "🤖 IA & Automação de Vídeo",
+    githubUrl: "https://github.com/xxsusuxx"
   },
   {
     id: "douradina-multiservicos",
@@ -178,20 +201,6 @@ export const experiencesData: Experience[] = [
       "Modelagem relacional para agendamentos, estoque, prontuários de pets e financeiro com isolamento total de dados."
     ],
     stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "RLS", "Zod"]
-  },
-  {
-    id: "freelance-dev",
-    role: "Criador de Conteúdo & Desenvolvedor Freelance",
-    company: "Autônomo",
-    period: "Agosto 2025 – Atual",
-    location: "Projetos Próprios",
-    type: "freelancer",
-    highlightBadge: "Em Destaque",
-    highlights: [
-      "Desenvolvimento de scripts de automação em Python (Selenium, Scrapy, Tkinter) para extração e estruturação de dados.",
-      "Concilio o trabalho prático com dedicação diária ao estudo de arquitetura de software, programação e criação de conteúdo."
-    ],
-    stack: ["Python", "Selenium", "Scrapy", "Tkinter", "APIs REST"]
   },
   {
     id: "frontend-voluntario",

@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   FileText
 } from 'lucide-react';
-import { profileData, educationData } from '../data/portfolioData';
+import { profileData, experiencesData, educationData, projectsData } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -28,23 +28,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   if (!isOpen) return null;
 
-  const mainProjects = [
-    {
-      id: 'petnexus',
-      title: 'PetNexus — Sistema SaaS de Gestão para Pet Shops',
-      description: 'Arquitetura e desenvolvimento completo de uma plataforma em nuvem para gestão de pet shops. Inclui controle financeiro, agendamentos, caixa e portal do tutor.'
-    },
-    {
-      id: 'goodreads-scraper',
-      title: 'Goodreads Scraper & GUI (Automação em Python)',
-      description: 'Aplicação em Python para extração automatizada de dados na web utilizando Scrapy e interface gráfica Tkinter com exportação estruturada.'
-    },
-    {
-      id: 'ai-content-automation',
-      title: 'Automação de Conteúdo & Canais no YouTube (IA)',
-      description: 'Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados.'
-    }
-  ];
+  const mainProjects = projectsData
+    .filter(p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'automacao-youtube-ia')
+    .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99));
 
   const handlePrint = () => {
     const originalTitle = document.title;
@@ -59,35 +45,29 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     const cleanLinkedin = profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '');
     const cleanGithub = profileData.github.replace(/^https?:\/\/(www\.)?/, '');
     const cvText = `
-${profileData.name} - Desenvolvedor de Software | Criador do PetNexus
+${profileData.name} - ${profileData.roleTitle}
 Contato: ${profileData.phone} | ${profileData.location} | ${profileData.email}
-LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfólio: ${profileData.website}
+LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfolio: ${profileData.website}
 
 01. PERFIL PROFISSIONAL
-Desenvolvedor de Software e criador de soluções focadas em automação, Inteligência Artificial e eficiência. Trajetória marcada por forte ética de trabalho, liderança operacional e capacidade de resolução prática de problemas em ambientes dinâmicos. Domínio em criação de sistemas web (Next.js, TypeScript, Python), automações de vídeo/conteúdo com IA e suporte técnico.
+${profileData.bioText}
 
 02. PROJETOS PRINCIPAIS
-• PetNexus (SaaS): Plataforma completa para gestão e agendamento de pet shops.
-• Goodreads Scraper & GUI: Automação em Python com interface gráfica para extração de dados.
-• Automação de Conteúdo & IA (YouTube): Pipelines e scripts para edição automatizada e criação de conteúdo via IA.
+1. PetNexus (SaaS Multi-Tenant): Arquitetura e desenvolvimento completo de um SaaS para gestão inteligente do ecossistema pet.
+2. Douradina MultiServiços: Hub de serviços para Douradina-PR e região que conecta clientes a profissionais.
+3. Automação de Conteúdo & Canais no YouTube (IA): Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados.
 
 03. EXPERIÊNCIA PROFISSIONAL
-• Desenvolvedor de Software & Fundador (Maio 2025 – Atual) | Suenaga Automações
-  - Arquitetura de software, desenvolvimento de produtos digitais (PetNexus) e automações comerciais e de mídia.
-• Operador de Espumação (Noturno) (Maio 2024 – Março 2025) | Gazin Colchões
-  - Responsável direto pela produção e controle de qualidade no turno da noite.
-  - Liderança de equipe no setor, organização de tarefas e resolução de imprevistos em ambiente industrial sob pressão.
-• Auxiliar Carga e Descarga (Junho 2023 – Setembro 2023) | Gazin
-  - Gestão de fluxo de logística, organização de depósitos, agilidade e trabalho em equipe em ritmo acelerado.
-• Atendente Técnico – Loja de Informática (Março 2021 – Julho 2021) | Virtual Tec Sistemas
-  - Atendimento presencial a clientes, suporte técnico e auxílio na resolução de dúvidas e problemas de informática.
+• Fundador e Desenvolvedor Full-Stack (Maio 2025 – Atual) | PetNexus (SaaS)
+• Desenvolvedor Front-end (Voluntário) (Nov 2023 – Abr 2024) | Projeto Base
+• Operador de Espumação Noturno & Líder de Setor (Maio 2024 – Março 2025) | Gazin Colchões
 
 04. FORMAÇÃO ACADÊMICA
 • Técnico em Desenvolvimento de Sistemas (2022 - 2023) - Colégio Estadual Cleoracy Aparecida Gil
 • Engenheiro Front-end (2023 - 2024) - EBAC
 
 05. PRINCIPAIS COMPETÊNCIAS
-Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligência Artificial, Automação de Vídeo/Edição, Suporte Técnico, Liderança Operacional, Trabalho em Equipe.
+Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automações de Vídeo & Mídia com IA, APIs REST, Tailwind CSS, Visão de Produto & SaaS Multi-Tenant.
     `.trim();
 
     navigator.clipboard.writeText(cvText);
@@ -105,7 +85,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
           transition={{ duration: 0.25 }}
           className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
         >
-          {/* Controls Bar */}
+          {/* Modal Header Controls (Hidden on print) */}
           <div className="no-print p-4 sm:p-5 bg-zinc-900 border-b border-zinc-800 flex flex-wrap items-center justify-between gap-3 sticky top-0 z-20">
             <div className="flex items-center gap-2">
               <div className="p-2 rounded-lg bg-indigo-950 text-indigo-400 border border-indigo-800/50">
@@ -134,7 +114,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
               <button
                 onClick={downloadResumePDF}
                 className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 border border-indigo-400/40 cursor-pointer"
-                title="Baixar PDF do Currículo"
+                title="Baixar PDF do Currículo (cv-gabrielsuenaga.pdf)"
               >
                 <Download className="w-4 h-4 text-indigo-100 animate-bounce" />
                 <span>Baixar PDF (.pdf)</span>
@@ -159,10 +139,10 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
             </div>
           </div>
 
-          {/* Document Content */}
+          {/* Printable Document Body */}
           <div className="overflow-y-auto p-6 sm:p-10 print:p-0 space-y-6 print:space-y-4 bg-zinc-950 text-zinc-200 printable-cv font-sans">
             
-            {/* Personal Info Header */}
+            {/* Header / Personal Info */}
             <div className="border-b border-zinc-800 pb-5 print:pb-3 space-y-3 print:space-y-2 cv-section-block">
               <div className="flex flex-wrap justify-between items-start gap-4">
                 <div>
@@ -170,7 +150,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
                     {profileData.name}
                   </h1>
                   <p className="text-lg print:text-sm font-bold text-indigo-400 mt-1 font-display">
-                    Desenvolvedor de Software | Criador do PetNexus
+                    {profileData.roleTitle}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-zinc-400 space-y-1 sm:text-right">
@@ -186,7 +166,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
                 </div>
               </div>
 
-              {/* Links */}
+              {/* Social / Portfolio Links */}
               <div className="flex flex-wrap gap-4 text-xs font-mono pt-1 text-zinc-300">
                 <a href={profileData.linkedin} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
                   <Linkedin className="w-3.5 h-3.5 text-indigo-400" /> {profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '')}
@@ -206,7 +186,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
                 <span>01.</span> Perfil Profissional
               </h2>
               <p className="text-xs sm:text-sm print:text-xs text-zinc-300 leading-relaxed font-normal">
-                Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus, especialista em desenvolvimento web moderno (Next.js/TypeScript), automações de mídia/vídeo com IA e atendimento técnico.
+                {profileData.bioText}
               </p>
             </div>
 
@@ -217,9 +197,22 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
               </h2>
               <div className="grid grid-cols-1 gap-2.5">
                 {mainProjects.map((proj) => (
-                  <div key={proj.id} className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1 cv-card">
-                    <h3 className="text-xs sm:text-sm font-bold text-white font-display">{proj.title}</h3>
+                  <div key={proj.id} className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1.5 cv-card">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">{proj.title}</h3>
+                      {proj.badgeText && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950/70 text-indigo-300 border border-indigo-800/40">
+                          {proj.badgeText}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-xs text-zinc-300 leading-relaxed">{proj.description}</p>
+                    {proj.demoUrl && (
+                      <p className="text-[11px] font-mono text-zinc-400">
+                        <span className="text-indigo-400 font-semibold">Demo: </span>
+                        <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="underline hover:text-white transition-colors">{proj.demoUrl}</a>
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -231,87 +224,28 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
                 <span>03.</span> Experiência Profissional
               </h2>
               <div className="space-y-3">
-
-                {/* 1. Suenaga Automações */}
-                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
-                  <div className="flex flex-wrap justify-between items-start gap-2">
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Desenvolvedor de Software & Fundador</h3>
-                      <p className="text-xs font-semibold text-indigo-400">Suenaga Automações • Douradina - PR</p>
+                {experiencesData.map((exp) => (
+                  <div key={exp.id} className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
+                    <div className="flex flex-wrap justify-between items-start gap-2">
+                      <div>
+                        <h3 className="text-xs sm:text-sm font-bold text-white font-display">{exp.role}</h3>
+                        <p className="text-xs font-semibold text-indigo-400">{exp.company} • {exp.location}</p>
+                      </div>
+                      <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                        {exp.period}
+                      </span>
                     </div>
-                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
-                      Maio 2025 – Atual
-                    </span>
-                  </div>
-                  <ul className="space-y-1 text-xs text-zinc-300">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Desenvolvimento do SaaS PetNexus e automações comerciais/conteúdo utilizando Next.js, Python e IA.</span>
-                    </li>
-                  </ul>
-                </div>
 
-                {/* 2. Gazin - Operador de Espumação (Noturno) */}
-                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
-                  <div className="flex flex-wrap justify-between items-start gap-2">
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Operador de Espumação (Noturno)</h3>
-                      <p className="text-xs font-semibold text-indigo-400">Gazin Colchões • Douradina - PR</p>
-                    </div>
-                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
-                      Maio 2024 – Março 2025
-                    </span>
+                    <ul className="space-y-1 text-xs text-zinc-300">
+                      {exp.highlights.map((h, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-1 text-xs text-zinc-300">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Operação de maquinário, responsabilidade direta sobre produção, abastecimento e controle de qualidade.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Liderança da equipe no turno da noite, distribuição de tarefas, tomada de decisão e resolução de imprevistos sob pressão.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 3. Gazin - Auxiliar Carga e Descarga */}
-                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
-                  <div className="flex flex-wrap justify-between items-start gap-2">
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Auxiliar Carga e Descarga</h3>
-                      <p className="text-xs font-semibold text-indigo-400">Gazin • Douradina - PR</p>
-                    </div>
-                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
-                      Junho 2023 – Setembro 2023
-                    </span>
-                  </div>
-                  <ul className="space-y-1 text-xs text-zinc-300">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Atuação na rotina logística de transporte e organização de depósito, com foco em agilidade, atenção aos detalhes e trabalho em equipe.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 4. Virtual Tec Sistemas - Atendente Técnico */}
-                <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
-                  <div className="flex flex-wrap justify-between items-start gap-2">
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-white font-display">Atendente Técnico – Loja de Informática</h3>
-                      <p className="text-xs font-semibold text-indigo-400">Virtual Tec Sistemas • Douradina - PR</p>
-                    </div>
-                    <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
-                      Março 2021 – Julho 2021
-                    </span>
-                  </div>
-                  <ul className="space-y-1 text-xs text-zinc-300">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Atendimento presencial a clientes, suporte técnico e auxílio na resolução de dúvidas e problemas de informática.</span>
-                    </li>
-                  </ul>
-                </div>
-
+                ))}
               </div>
             </div>
 
@@ -321,40 +255,34 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
                 <span>04.</span> Formação Acadêmica
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-                <div className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
-                  <div className="flex justify-between items-start gap-2">
-                    <h3 className="text-xs font-bold text-white font-display">Técnico em Desenvolvimento de Sistemas</h3>
-                    <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">2022 – 2023</span>
+                {educationData.map((edu) => (
+                  <div key={edu.id} className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
+                    <div className="flex justify-between items-start gap-2">
+                      <h3 className="text-xs font-bold text-white font-display">{edu.title}</h3>
+                      <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">{edu.period}</span>
+                    </div>
+                    <p className="text-[11px] font-semibold text-indigo-400">{edu.institution}</p>
                   </div>
-                  <p className="text-[11px] font-semibold text-indigo-400">Colégio Estadual Cleoracy Aparecida Gil</p>
-                </div>
-
-                <div className="p-3 rounded-xl bg-zinc-900/70 border border-zinc-800 space-y-1 cv-card">
-                  <div className="flex justify-between items-start gap-2">
-                    <h3 className="text-xs font-bold text-white font-display">Engenheiro Front-End</h3>
-                    <span className="text-[10px] font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">2023 – 2024</span>
-                  </div>
-                  <p className="text-[11px] font-semibold text-indigo-400">EBAC - Escola Britânica de Artes Criativas e Tecnologia</p>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* 05. Competências */}
+            {/* 05. Principais Competências */}
             <div className="space-y-2 pt-2 border-t border-zinc-800 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>05.</span> Principais Competências
               </h2>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {[
-                  "Desenvolvimento de Software",
+                  "Next.js / React",
+                  "TypeScript",
+                  "Supabase (Auth/RLS)",
+                  "PostgreSQL",
                   "Python",
-                  "JavaScript / TypeScript",
-                  "React / Next.js",
-                  "Inteligência Artificial (IA)",
-                  "Automação de Conteúdo e Vídeo",
-                  "Suporte Técnico & Atendimento",
-                  "Liderança Operacional",
-                  "Resolução de Problemas"
+                  "Automações de Mídia & IA",
+                  "APIs REST",
+                  "Tailwind CSS",
+                  "Visão de Produto & SaaS Multi-Tenant"
                 ].map((skill) => (
                   <span
                     key={skill}
@@ -366,7 +294,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligên
               </div>
             </div>
 
-            {/* Footer */}
+            {/* Footer Notice */}
             <div className="pt-3 border-t border-zinc-900 text-center text-[11px] text-zinc-400 font-mono cv-section-block">
               Gabriel Suenaga • Douradina - PR • {profileData.phone} • {profileData.email}
             </div>

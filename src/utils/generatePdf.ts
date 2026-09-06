@@ -101,14 +101,13 @@ function buildPdfDocument(): jsPDF {
   // --- 02. PROJETOS PRINCIPAIS ---
   drawSectionHeader('02', 'Projetos Principais');
 
-  const mainProjects = projectsData.filter(
-    p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'goodreads-scraper'
-  );
+  const mainProjects = projectsData
+    .filter(p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'automacao-youtube-ia')
+    .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99));
 
   mainProjects.forEach((proj) => {
     const descLines = doc.splitTextToSize(proj.description, contentWidth - 8);
-    const cardHeight = 8 + descLines.length * 3.8 + 3;
-
+    const cardHeight = 8.5 + descLines.length * 3.9 + 3;
     checkPageBreak(cardHeight + 2);
 
     // Card Container
@@ -118,25 +117,24 @@ function buildPdfDocument(): jsPDF {
 
     // Title
     doc.setFont('Roboto', 'bold');
-    doc.setFontSize(8.5);
+    doc.setFontSize(8.8);
     doc.setTextColor(255, 255, 255);
-    doc.text(proj.title, margin + 4, y + 4.5);
+    doc.text(proj.title, margin + 4, y + 4.8);
 
     // Description
     doc.setFont('Roboto', 'normal');
     doc.setFontSize(7.8);
     doc.setTextColor(212, 212, 216);
-    doc.text(descLines, margin + 4, y + 8.5);
+    doc.text(descLines, margin + 4, y + 9.2);
 
-    y += cardHeight + 3;
+    y += cardHeight + 3.5;
   });
-  y += 2;
+  y += 1.5;
 
   // --- 03. EXPERIÊNCIA PROFISSIONAL ---
   drawSectionHeader('03', 'Experiência Profissional');
 
   experiencesData.forEach((exp) => {
-    // Calculate total lines for highlights
     let highlightsHeight = 0;
     exp.highlights.forEach(h => {
       const wrapped = doc.splitTextToSize(h, contentWidth - 12);
@@ -144,7 +142,12 @@ function buildPdfDocument(): jsPDF {
     });
 
     const cardHeight = 11 + highlightsHeight + 3;
-    checkPageBreak(cardHeight + 2);
+    if (y + cardHeight + 2 > pageHeight - margin) {
+      doc.addPage();
+      setPageBackground();
+      y = 14;
+      drawSectionHeader('03', 'Experiência Profissional (Continuação)');
+    }
 
     // Card Box
     doc.setFillColor(20, 20, 25);
@@ -188,7 +191,7 @@ function buildPdfDocument(): jsPDF {
       currentBulletY += wrapped.length * 3.8;
     });
 
-    y += cardHeight + 3;
+    y += cardHeight + 3.5;
   });
   y += 2;
 
@@ -234,8 +237,8 @@ function buildPdfDocument(): jsPDF {
     "Supabase (Auth/RLS)",
     "PostgreSQL",
     "Python",
+    "Automações de Mídia & IA",
     "APIs REST",
-    "Web Scraping (Scrapy/Selenium)",
     "Tailwind CSS",
     "Visão de Produto & SaaS Multi-Tenant"
   ];
@@ -278,7 +281,7 @@ export function downloadResumePDF() {
     console.error('Error downloading resume PDF:', err);
     // Fallback to static link
     const link = document.createElement('a');
-    link.href = '/cv-gabrielsuenaga.pdf';
+    link.href = `/cv-gabrielsuenaga.pdf?v=${Date.now()}`;
     link.download = 'cv-gabrielsuenaga.pdf';
     document.body.appendChild(link);
     link.click();
