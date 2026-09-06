@@ -40,9 +40,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
       description: 'Aplicação em Python para extração automatizada de dados na web utilizando Scrapy e interface gráfica Tkinter com exportação estruturada.'
     },
     {
-      id: 'douradina-multiservicos',
-      title: 'Hub de Serviços e Automações Locais',
-      description: 'Desenvolvimento de ecossistemas web e integração de fluxos automatizados para estabelecimentos comerciais.'
+      id: 'ai-content-automation',
+      title: 'Automação de Conteúdo & Canais no YouTube (IA)',
+      description: 'Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados.'
     }
   ];
 
@@ -64,16 +64,16 @@ Contato: ${profileData.phone} | ${profileData.location} | ${profileData.email}
 LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfólio: ${profileData.website}
 
 01. PERFIL PROFISSIONAL
-Desenvolvedor de Software e criador de soluções focadas em automação e eficiência. Trajetória marcada por forte ética de trabalho, liderança operacional e capacidade de resolução prática de problemas em ambientes dinâmicos. Domínio em criação de sistemas web (Next.js, TypeScript, Python), automações e atendimento técnico ao cliente.
+Desenvolvedor de Software e criador de soluções focadas em automação, Inteligência Artificial e eficiência. Trajetória marcada por forte ética de trabalho, liderança operacional e capacidade de resolução prática de problemas em ambientes dinâmicos. Domínio em criação de sistemas web (Next.js, TypeScript, Python), automações de vídeo/conteúdo com IA e suporte técnico.
 
 02. PROJETOS PRINCIPAIS
 • PetNexus (SaaS): Plataforma completa para gestão e agendamento de pet shops.
 • Goodreads Scraper & GUI: Automação em Python com interface gráfica para extração de dados.
-• Hub de Soluções e Automações: Desenvolvimento web e integração de fluxos comerciais.
+• Automação de Conteúdo & IA (YouTube): Pipelines e scripts para edição automatizada e criação de conteúdo via IA.
 
 03. EXPERIÊNCIA PROFISSIONAL
 • Desenvolvedor de Software & Fundador (Maio 2025 – Atual) | Suenaga Automações
-  - Arquitetura de software, desenvolvimento de produtos digitais (PetNexus) e automações.
+  - Arquitetura de software, desenvolvimento de produtos digitais (PetNexus) e automações comerciais e de mídia.
 • Operador de Espumação (Noturno) (Maio 2024 – Março 2025) | Gazin Colchões
   - Responsável direto pela produção e controle de qualidade no turno da noite.
   - Liderança de equipe no setor, organização de tarefas e resolução de imprevistos em ambiente industrial sob pressão.
@@ -87,7 +87,7 @@ Desenvolvedor de Software e criador de soluções focadas em automação e efici
 • Engenheiro Front-end (2023 - 2024) - EBAC
 
 05. PRINCIPAIS COMPETÊNCIAS
-Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Suporte Técnico, Resolução de Problemas, Liderança Operacional, Trabalho em Equipe.
+Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Inteligência Artificial, Automação de Vídeo/Edição, Suporte Técnico, Liderança Operacional, Trabalho em Equipe.
     `.trim();
 
     navigator.clipboard.writeText(cvText);
@@ -206,11 +206,11 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Suporte T�
                 <span>01.</span> Perfil Profissional
               </h2>
               <p className="text-xs sm:text-sm print:text-xs text-zinc-300 leading-relaxed font-normal">
-                Desenvolvedor de Software e criador de soluções tecnológicas focadas em eficiência operacional e automação. Trajetória profissional marcada por resiliência, liderança de equipe em ambiente industrial sob pressão e transição focada para a tecnologia. Experiência na criação do sistema SaaS PetNexus do zero, desenvolvimento de automações em Python/TypeScript e histórico prático em atendimento técnico ao cliente.
+                Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus, especialista em desenvolvimento web moderno (Next.js/TypeScript), automações de mídia/vídeo com IA e atendimento técnico.
               </p>
             </div>
 
-            {/* 02. Projetos */}
+            {/* 02. Projetos Principais */}
             <div className="space-y-2.5 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>02.</span> Projetos Principais
@@ -225,7 +225,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Suporte T�
               </div>
             </div>
 
-            {/* 03. Experiência Profissional (Exatamente do LinkedIn) */}
+            {/* 03. Experiência Profissional */}
             <div className="space-y-3 cv-section-block">
               <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
                 <span>03.</span> Experiência Profissional
@@ -246,7 +246,7 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Suporte T�
                   <ul className="space-y-1 text-xs text-zinc-300">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                      <span>Desenvolvimento do SaaS PetNexus e soluções de automação comercial com Next.js, Python e Supabase.</span>
+                      <span>Desenvolvimento do SaaS PetNexus e automações comerciais/conteúdo utilizando Next.js, Python e IA.</span>
                     </li>
                   </ul>
                 </div>
@@ -350,11 +350,11 @@ Desenvolvimento de Software, Python, JavaScript, TypeScript, Next.js, Suporte T�
                   "Python",
                   "JavaScript / TypeScript",
                   "React / Next.js",
+                  "Inteligência Artificial (IA)",
+                  "Automação de Conteúdo e Vídeo",
                   "Suporte Técnico & Atendimento",
                   "Liderança Operacional",
-                  "Resolução de Problemas",
-                  "Trabalho em Equipe",
-                  "Automação de Processos"
+                  "Resolução de Problemas"
                 ].map((skill) => (
                   <span
                     key={skill}
