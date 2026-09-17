@@ -12,6 +12,7 @@ export interface Project {
   architectureSpecs?: string[];
   metrics?: { label: string; value: string }[];
   demoUrl?: string;
+  offerUrl?: string;
   githubUrl?: string;
   whatsappDemoUrl?: string;
   instagramUrl?: string;

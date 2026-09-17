@@ -182,24 +182,34 @@ export const ProjectsSection: React.FC = () => {
                 {/* Action buttons */}
                 <div className="flex flex-wrap items-center gap-3 pt-2">
                   <a
-                    href="https://white-label-petshop.vercel.app/"
+                    href="https://petnexus.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/30 transition-all hover:scale-105 active:scale-95"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    <span>Ver Sistema ao Vivo →</span>
+                    <span>Acessar Sistema (MVP) →</span>
+                  </a>
+
+                  <a
+                    href="https://petnexusoferta.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Página de Ofertas ↗</span>
                   </a>
 
                   <button
                     onClick={() => setActiveModalProject(projectsData[0])}
-                    className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 transition-all"
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-all"
                   >
-                    Ver Detalhes da Arquitetura
+                    Detalhes da Arquitetura
                   </button>
 
                   <a
-                    href="https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Quero%20conhecer%20mais%20detalhes%20do%20PetNexus%20SaaS."
+                    href="https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Quero%20conhecer%20mais%20detalhes%20do%20PetNexus%20SaaS%20e%20a%20p%C3%A1gina%20de%20ofertas."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-all"
@@ -372,16 +382,29 @@ export const ProjectsSection: React.FC = () => {
                   </button>
 
                   <div className="flex items-center gap-2">
+                    {project.offerUrl && (
+                      <a
+                        href={project.offerUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-medium transition-all shadow-sm shadow-indigo-900/20"
+                        title="Ver página de ofertas"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Ofertas</span>
+                      </a>
+                    )}
+
                     {project.demoUrl && (
                       <a
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-medium transition-all shadow-sm shadow-indigo-900/20"
-                        title="Acessar projeto em produção"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-medium transition-all shadow-sm shadow-emerald-900/20"
+                        title={project.id === 'automacao-youtube-ia' ? "Acessar hub.xyz com código de convite WWBDQ473" : (project.offerUrl ? "Acessar sistema" : "Acessar projeto em produção")}
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        <span>Ver Site</span>
+                        <span>{project.id === 'automacao-youtube-ia' ? 'hub.xyz' : (project.offerUrl ? 'Ver Sistema' : 'Ver Site')}</span>
                       </a>
                     )}
 
@@ -574,15 +597,26 @@ export const ProjectsSection: React.FC = () => {
                     <span>TikTok</span>
                   </a>
                 )}
-                {activeModalProject.demoUrl && (
+                {activeModalProject.offerUrl && (
                   <a
-                    href={activeModalProject.demoUrl}
+                    href={activeModalProject.offerUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    <span>Acessar Site</span>
+                    <span>Página de Ofertas</span>
+                  </a>
+                )}
+                {activeModalProject.demoUrl && (
+                  <a
+                    href={activeModalProject.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-lg shadow-emerald-600/30 transition-all"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>{activeModalProject.id === 'automacao-youtube-ia' ? 'Acessar hub.xyz (Código WWBDQ473)' : (activeModalProject.offerUrl ? 'Acessar Sistema' : 'Acessar Site')}</span>
                   </a>
                 )}
                 {activeModalProject.githubUrl && (

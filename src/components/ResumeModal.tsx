@@ -44,18 +44,19 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   const handleCopyText = () => {
     const cleanLinkedin = profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '');
     const cleanGithub = profileData.github.replace(/^https?:\/\/(www\.)?/, '');
+    const cleanWebsite = profileData.website.replace(/^https?:\/\//, '').replace(/\/$/, '');
     const cvText = `
 ${profileData.name} - ${profileData.roleTitle}
 Contato: ${profileData.phone} | ${profileData.location} | ${profileData.email}
-LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfolio: ${profileData.website}
+LinkedIn: ${cleanLinkedin} | GitHub: ${cleanGithub} | Portfolio: ${cleanWebsite}
 
 01. PERFIL PROFISSIONAL
 ${profileData.bioText}
 
 02. PROJETOS PRINCIPAIS
-1. PetNexus (SaaS Multi-Tenant): Arquitetura e desenvolvimento completo de um SaaS para gestão inteligente do ecossistema pet.
-2. Douradina MultiServiços: Hub de serviços para Douradina-PR e região que conecta clientes a profissionais.
-3. Automação de Conteúdo & Canais no YouTube (IA): Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados.
+1. PetNexus (SaaS Multi-Tenant): Versão inicial do MVP 100% finalizada (https://petnexus.vercel.app/) e página de ofertas no ar (https://petnexusoferta.vercel.app/).
+2. Automação de Conteúdo, hub.xyz & Vídeos com IA: Pipelines de vídeo com IA. Menos de 2h/dia gerando R$ 130 em 3 dias no hub.xyz (https://ai.hub.xyz/r/WWBDQ473).
+3. Douradina MultiServiços: Hub de serviços para Douradina-PR e região que conecta clientes a profissionais.
 
 03. EXPERIÊNCIA PROFISSIONAL
 • Fundador e Desenvolvedor Full-Stack (Maio 2025 – Atual) | PetNexus (SaaS)
@@ -67,7 +68,7 @@ ${profileData.bioText}
 • Engenheiro Front-end (2023 - 2024) - EBAC
 
 05. PRINCIPAIS COMPETÊNCIAS
-Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automações de Vídeo & Mídia com IA, APIs REST, Tailwind CSS, Visão de Produto & SaaS Multi-Tenant.
+Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automações de Vídeo & Mídia com IA, hub.xyz, APIs REST, Tailwind CSS, Visão de Produto & SaaS Multi-Tenant.
     `.trim();
 
     navigator.clipboard.writeText(cvText);
@@ -174,8 +175,8 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automaçõ
                 <a href={profileData.github} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
                   <Github className="w-3.5 h-3.5 text-indigo-400" /> {profileData.github.replace(/^https?:\/\/(www\.)?/, '')}
                 </a>
-                <a href={`https://${profileData.website}`} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <Globe className="w-3.5 h-3.5 text-indigo-400" /> {profileData.website}
+                <a href={profileData.website.startsWith('http') ? profileData.website : `https://${profileData.website}`} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  <Globe className="w-3.5 h-3.5 text-indigo-400" /> {profileData.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                 </a>
               </div>
             </div>
@@ -207,12 +208,20 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automaçõ
                       )}
                     </div>
                     <p className="text-xs text-zinc-300 leading-relaxed">{proj.description}</p>
-                    {proj.demoUrl && (
-                      <p className="text-[11px] font-mono text-zinc-400">
-                        <span className="text-indigo-400 font-semibold">Demo: </span>
-                        <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="underline hover:text-white transition-colors">{proj.demoUrl}</a>
-                      </p>
-                    )}
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-zinc-400">
+                      {proj.demoUrl && (
+                        <p>
+                          <span className="text-emerald-400 font-semibold">{proj.id === 'automacao-youtube-ia' ? 'hub.xyz: ' : (proj.offerUrl ? 'Sistema: ' : 'Demo: ')}</span>
+                          <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="underline hover:text-white transition-colors">{proj.demoUrl}</a>
+                        </p>
+                      )}
+                      {proj.offerUrl && (
+                        <p>
+                          <span className="text-indigo-400 font-semibold">Ofertas: </span>
+                          <a href={proj.offerUrl} target="_blank" rel="noreferrer" className="underline hover:text-white transition-colors">{proj.offerUrl}</a>
+                        </p>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

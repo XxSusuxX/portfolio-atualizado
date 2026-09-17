@@ -51,12 +51,12 @@ export const PetNexusPreview: React.FC = () => {
 
   const getUrlForTab = (tab: PreviewTab) => {
     switch (tab) {
-      case 'landing': return 'https://white-label-petshop.vercel.app/';
-      case 'client-home': return 'https://white-label-petshop.vercel.app/client';
-      case 'client-pets': return 'https://white-label-petshop.vercel.app/client/pets';
-      case 'add-pet-modal': return 'https://white-label-petshop.vercel.app/client/pets?action=add-pet';
-      case 'admin-agenda': return 'https://white-label-petshop.vercel.app/admin/agenda';
-      case 'admin-operacao': return 'https://white-label-petshop.vercel.app/admin/operacao';
+      case 'landing': return 'https://petnexus.vercel.app/';
+      case 'client-home': return 'https://petnexus.vercel.app/client';
+      case 'client-pets': return 'https://petnexus.vercel.app/client/pets';
+      case 'add-pet-modal': return 'https://petnexus.vercel.app/client/pets?action=add-pet';
+      case 'admin-agenda': return 'https://petnexus.vercel.app/admin/agenda';
+      case 'admin-operacao': return 'https://petnexus.vercel.app/admin/operacao';
     }
   };
 
@@ -90,12 +90,22 @@ export const PetNexusPreview: React.FC = () => {
 
         <div className="flex items-center gap-2 ml-auto">
           <a
-            href="https://white-label-petshop.vercel.app/"
+            href="https://petnexusoferta.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold bg-indigo-500/15 text-indigo-300 hover:bg-indigo-500/25 border border-indigo-500/30 transition-all"
+            title="Ver Página de Vendas e Ofertas"
+          >
+            <span>Página de Ofertas</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+          <a
+            href="https://petnexus.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all"
           >
-            <span>white-label-petshop.vercel.app</span>
+            <span>petnexus.vercel.app</span>
             <ExternalLink className="w-3 h-3" />
           </a>
           <button
@@ -176,13 +186,22 @@ export const PetNexusPreview: React.FC = () => {
                     </p>
                     <div className="flex flex-wrap items-center gap-3 pt-2">
                       <a
-                        href="https://white-label-petshop.vercel.app/"
+                        href="https://petnexus.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-4 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-zinc-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/20"
                       >
                         <span>Acessar Sistema ao Vivo</span>
                         <span>→</span>
+                      </a>
+                      <a
+                        href="https://petnexusoferta.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-indigo-600/20"
+                      >
+                        <span>Ver Página de Ofertas</span>
+                        <span>↗</span>
                       </a>
                       <button onClick={() => setActiveTab('admin-agenda')} className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-medium text-xs">
                         Explorar Área de Admin
@@ -882,17 +901,28 @@ export const PetNexusPreview: React.FC = () => {
         <div className="bg-[#0c0f14] px-4 py-2 border-t border-zinc-800/80 flex items-center justify-between text-[11px] text-zinc-400 font-mono">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>● Sistema em Produção · Vercel · Supabase Realtime</span>
+            <span>● MVP Completo · Vercel · Supabase Realtime</span>
           </div>
-          <a
-            href="https://white-label-petshop.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold transition-colors"
-          >
-            <span>Ver Sistema ao Vivo</span>
-            <span>→</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://petnexusoferta.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-semibold transition-colors"
+            >
+              <span>Ofertas</span>
+              <span>↗</span>
+            </a>
+            <a
+              href="https://petnexus.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold transition-colors"
+            >
+              <span>Ver Sistema ao Vivo</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
 
       </div>

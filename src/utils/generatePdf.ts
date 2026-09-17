@@ -62,7 +62,8 @@ function buildPdfDocument(): jsPDF {
   // Line 2: Links
   const cleanLinkedin = profileData.linkedin.replace(/^https?:\/\/(www\.)?/, '');
   const cleanGithub = profileData.github.replace(/^https?:\/\/(www\.)?/, '');
-  const contactLine2 = `${cleanLinkedin}   |   ${cleanGithub}   |   ${profileData.website}`;
+  const cleanWebsite = profileData.website.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  const contactLine2 = `${cleanLinkedin}   |   ${cleanGithub}   |   ${cleanWebsite}`;
   doc.text(contactLine2, margin, y);
   y += 5.5;
 
@@ -107,7 +108,9 @@ function buildPdfDocument(): jsPDF {
 
   mainProjects.forEach((proj) => {
     const descLines = doc.splitTextToSize(proj.description, contentWidth - 8);
-    const cardHeight = 8.5 + descLines.length * 3.9 + 3;
+    const hasUrls = Boolean(proj.demoUrl || proj.offerUrl);
+    const linkExtraHeight = hasUrls ? 3.5 : 0;
+    const cardHeight = 8.5 + descLines.length * 3.9 + linkExtraHeight + 1.5;
     checkPageBreak(cardHeight + 2);
 
     // Card Container
@@ -126,6 +129,16 @@ function buildPdfDocument(): jsPDF {
     doc.setFontSize(7.8);
     doc.setTextColor(212, 212, 216);
     doc.text(descLines, margin + 4, y + 9.2);
+
+    if (hasUrls) {
+      doc.setFontSize(7.2);
+      const urlText = [
+        proj.demoUrl ? `${proj.id === 'automacao-youtube-ia' ? 'hub.xyz' : (proj.offerUrl ? 'Sistema' : 'Demo')}: ${proj.demoUrl}` : '',
+        proj.offerUrl ? `Ofertas: ${proj.offerUrl}` : ''
+      ].filter(Boolean).join('   |   ');
+      doc.setTextColor(129, 140, 248);
+      doc.text(urlText, margin + 4, y + 9.2 + descLines.length * 3.9 + 1);
+    }
 
     y += cardHeight + 3.5;
   });

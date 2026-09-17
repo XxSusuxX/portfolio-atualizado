@@ -3,12 +3,12 @@ import { ProfileData, Project, Experience, Education, SkillCategory, Testimonial
 export const profileData: ProfileData = {
   name: "Gabriel Suenaga",
   roleTitle: "Desenvolvedor de Software & CEO",
-  subtitle: "Criador do PetNexus (SaaS Multi-Tenant) e especialista em Next.js, TypeScript e automações B2B.",
-  bioText: "Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus, especialista em desenvolvimento web moderno (Next.js/TypeScript), automações de mídia/vídeo com IA e atendimento técnico.",
+  subtitle: "Criador do PetNexus (SaaS Multi-Tenant) e especialista em Next.js, TypeScript e automações com IA.",
+  bioText: "Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus (MVP completo com sistema e página de ofertas no ar), especialista em Next.js/TypeScript, pipelines de vídeo com IA monetizados no hub.xyz e automações ágeis.",
   location: "Douradina, PR - Brasil",
   phone: "(44) 99828-9752",
   email: "gabriel.hneus@gmail.com",
-  website: "www.gabrielsuenaga.com.br",
+  website: "https://gabriel-suenaga.vercel.app/",
   github: "https://github.com/xxsusuxx",
   linkedin: "https://linkedin.com/in/gabriel-suenaga",
   instagram: "https://instagram.com/gabrielsu.dev",
@@ -22,11 +22,12 @@ export const projectsData: Project[] = [
     category: "saas",
     featured: true,
     featuredOrder: 1,
-    tagline: "Plataforma SaaS White-Label completa e em produção para gestão inteligente de pet shops e clínicas veterinárias. Do banco ao mobile, do admin ao cliente — tudo em tempo real.",
-    description: "SaaS Multi-Tenant full-stack em produção para gestão inteligente de pet shops e clínicas veterinárias. Unifica a Área do Admin (Agenda visual, Operação Ao Vivo em tempo real, PDV, Prontuário, Equipe e Financeiro) e a Área do Cliente/Tutor (Acompanhamento ao vivo, agendamentos online, histórico e fidelidade).",
-    fullDescription: "O PetNexus é um SaaS Multi-Tenant full-stack, construído do zero com Next.js 14 (App Router), TypeScript, Supabase (Auth + RLS + Realtime) e Tailwind CSS. O sistema unifica duas experiências distintas em uma só plataforma:\n\n— Área do Admin (Petshop): Agenda visual (mês/semana/dia), Operação Ao Vivo com sincronização em tempo real via Supabase Realtime, PDV & Caixa, Prontuário Veterinário, Gestão de Clientes e Pets, Escala de Equipe, WhatsApp Central, Financeiro e Automações.\n\n— Área do Cliente (Tutor): Painel de acompanhamento de pets em tempo real, histórico de serviços, notificações push, agendamento online, cadastro de pets com foto, pacotes de serviço e programa de fidelidade.",
+    tagline: "SaaS White-Label com versão inicial do MVP 100% finalizada e página de ofertas no ar para gestão inteligente de pet shops e clínicas veterinárias.",
+    description: "SaaS Multi-Tenant full-stack em produção com MVP inicial completo. Unifica Área do Admin (Agenda visual, Operação Ao Vivo em tempo real, PDV, Prontuário, Equipe e Financeiro), Área do Cliente/Tutor e Página de Vendas/Ofertas ativa.",
+    fullDescription: "O PetNexus é um SaaS Multi-Tenant full-stack com sua versão inicial de MVP 100% finalizada e no ar (https://petnexus.vercel.app/), acompanhada da página de ofertas oficial (https://petnexusoferta.vercel.app/). Construído com Next.js 14 (App Router), TypeScript, Supabase (Auth + RLS + Realtime) e Tailwind CSS.\n\n— Área do Admin (Petshop): Agenda visual (mês/semana/dia), Operação Ao Vivo com sincronização em tempo real via Supabase Realtime, PDV & Caixa, Prontuário Veterinário, Gestão de Clientes e Pets, Escala de Equipe, WhatsApp Central e Financeiro.\n\n— Área do Cliente (Tutor): Painel de acompanhamento em tempo real, histórico de serviços, agendamento online e cadastro de pets.\n\n— Página de Ofertas: Landing page de alta conversão estruturada com copy persuasiva, planos e tabela comparativa de benefícios.",
     stack: ["Next.js 14", "App Router", "TypeScript", "React", "Supabase (Auth/RLS/Realtime)", "PostgreSQL 16", "Tailwind CSS", "Zod", "Vercel"],
     architectureSpecs: [
+      "Versão inicial do MVP 100% finalizada com sistema funcional e página de ofertas no ar",
       "Isolamento Multi-Tenant com RLS no Supabase (dados 100% isolados por tenant_id)",
       "Sincronização em tempo real (Supabase Realtime + polling de fallback 3s)",
       "Design System próprio em dark mode (Tailwind CSS, tokens customizados, glassmorphism)",
@@ -34,67 +35,41 @@ export const projectsData: Project[] = [
       "Agenda com visualização mês/semana/dia, agendamentos recorrentes e integração com Operação",
       "Validação end-to-end com Zod em todos os formulários e APIs",
       "Middleware de autenticação e proteção de rotas por perfil (admin, groomer, vet, client)",
-      "Sistema de notificações por evento com filtragem por role e autor (anti-auto-notificação)",
       "Deploy contínuo na Vercel com CI/CD via GitHub"
     ],
     metrics: [
-      { label: "Status", value: "🟢 Em Produção" },
-      { label: "Arquitetura", value: "Multi-Tenant RLS" },
-      { label: "Sync Engine", value: "Supabase Realtime" }
+      { label: "Status", value: "🟢 MVP Completo" },
+      { label: "Sistema", value: "petnexus.vercel.app" },
+      { label: "Ofertas", value: "petnexusoferta" }
     ],
-    badgeText: "🟢 Em Produção • SaaS Principal",
-    demoUrl: "https://white-label-petshop.vercel.app/",
-    whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Gostaria%20de%20saber%20mais%20sobre%20a%20arquitetura%20e%20recursos%20do%20PetNexus%20SaaS."
-  },
-  {
-    id: "carine-nunes-portfolio",
-    title: "Carine Nunes — Portfólio de Modelo",
-    category: "web",
-    featured: false,
-    tagline: "Portfólio Profissional de Modelo Fotográfica & Comercial",
-    description: "Portfólio digital desenvolvido para Carine Nunes (17 anos), modelo em início de carreira em busca de parcerias com marcas virtuais, confecções e lojas de roupas. Conecte-se e siga nas redes!",
-    fullDescription: "Desenvolvido com foco em alta elegância e apresentação profissional para o mercado da moda. O site destaca ensaios fotográficos em alta resolução, perfil visual, medidas corporais e canais diretos de contato para marcas virtuais e lojas de roupas que desejam fechar parcerias comerciais, catálogos e campanhas.\n\n✨ Apoie o trabalho da modelo: Siga o perfil no Instagram (@carine_nunesz) e no TikTok (@carine.nunesz) e compartilhe para novos trabalhos e parcerias!",
-    stack: ["React", "TypeScript", "Tailwind CSS", "UI/UX Design", "Vercel"],
-    architectureSpecs: [
-      "Design visual de alta sofisticação com tipografia editorial e layout responsivo mobile-first",
-      "Galeria fotográfica de ensaios com carregamento otimizado de imagens e alta fidelidade",
-      "Apresentação profissional de biografia, medidas corporais e segmentos de atuação (editorial/comercial)",
-      "Integração direta com canais de redes sociais (Instagram, TikTok) e canal de contato via WhatsApp"
-    ],
-    metrics: [
-      { label: "Segmento", value: "Moda & Modelo" },
-      { label: "Redes Sociais", value: "Instagram & TikTok" },
-      { label: "Parcerias", value: "Comercial & Editorial" }
-    ],
-    badgeText: "✨ Moda & Modelo",
-    demoUrl: "https://carine-nunes.vercel.app/",
-    instagramUrl: "https://www.instagram.com/carine_nunesz/",
-    tiktokUrl: "https://www.tiktok.com/@carine.nunesz",
-    socialCallout: "Siga o Instagram (@carine_nunesz) e TikTok (@carine.nunesz) para apoiar e acompanhar novos ensaios!",
-    whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20ou%20recomendar%20uma%20parceria%20para%20o%20portf%C3%B3lio%20da%20Carine%20Nunes."
+    badgeText: "🟢 MVP Completo • Sistema & Oferta",
+    demoUrl: "https://petnexus.vercel.app/",
+    offerUrl: "https://petnexusoferta.vercel.app/",
+    whatsappDemoUrl: "https://wa.me/5544998289752?text=Ol%C3%A1%20Gabriel!%20Gostaria%20de%20saber%20mais%20sobre%20o%20PetNexus%20SaaS%20e%20a%20p%C3%A1gina%20de%20ofertas."
   },
   {
     id: "automacao-youtube-ia",
-    title: "Automação de Conteúdo & Canais no YouTube (IA)",
+    title: "Automação de Conteúdo, hub.xyz & Vídeos com IA",
     category: "automation",
     featured: true,
-    featuredOrder: 3,
-    tagline: "Pipelines e automações inteligentes para produção e gestão de canais no YouTube",
-    description: "Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados.",
-    fullDescription: "Desenvolvimento de pipelines e automações para produção e edição de vídeos com Inteligência Artificial, otimizando o fluxo de criação, pós-produção e gestão de canais automatizados. Inclui integração com APIs de IA para roteirização e síntese, manipulação audiovisual automatizada via Python e FFmpeg, pipelines de legendas e distribuição.",
-    stack: ["Python", "IA Generativa", "FFmpeg", "Automação de Vídeo", "APIs de IA"],
+    featuredOrder: 2,
+    tagline: "Pipelines de corte e vídeos com IA: menos de 2h/dia gerando R$ 130 em 3 dias no hub.xyz e escala",
+    description: "Pipelines de corte e produção de vídeos com IA no hub.xyz. Com dedicação de menos de 2h por dia, gerou mais de R$ 130 em apenas 3 dias. O foco agora é acelerar a frequência de vídeos diários para consolidar como renda principal e reinvestir em novos negócios.",
+    fullDescription: "Após a conclusão da versão inicial do MVP do PetNexus, migrei estrategicamente para a automação e criação de conteúdo audiovisual com foco em valor e retorno imediato. Desenvolvi esteiras automatizadas de corte e produção de vídeos com Inteligência Artificial para o hub.xyz e canais digitais. Produzindo vídeos que demandaram no máximo 2 horas (menos de 2h por dia), gerei mais de R$ 130 de lucro em apenas 3 dias. A estratégia atual consiste em acelerar a frequência de postagens diárias através de scripts e ferramentas de IA para transformar essa fonte em renda principal e financiar novos negócios em tecnologia.",
+    stack: ["Python", "IA Generativa", "FFmpeg", "hub.xyz", "Automação de Vídeo", "APIs de IA"],
     architectureSpecs: [
-      "Pipelines em Python para automação de roteirização e síntese de voz neural",
-      "Processamento e edição programática de vídeo e áudio utilizando FFmpeg",
-      "Automação de renderização em lote, geração de legendas dinâmicas e thumbnails",
-      "Otimização e aceleração do ciclo de pós-produção e publicação para canais digitais"
+      "Esteiras com IA para roteirização, cortes dinâmicos e síntese audiovisual otimizada",
+      "Dedicação de menos de 2 horas por dia com retorno comprovado de mais de R$ 130 em 3 dias",
+      "Processamento e renderização programática de vídeo e áudio utilizando FFmpeg e Python",
+      "Meta operacional de elevação da frequência de postagens diárias para alavancagem de capital e reinvestimento"
     ],
     metrics: [
-      { label: "Área", value: "IA & Automação" },
-      { label: "Mídia", value: "Vídeo & Áudio" },
-      { label: "Fluxo", value: "Automatizado" }
+      { label: "Tempo/Dia", value: "< 2h por dia" },
+      { label: "Validação", value: "R$ 130+ em 3 dias" },
+      { label: "Estratégia", value: "Escalar & Reinvestir" }
     ],
-    badgeText: "🤖 IA & Automação de Vídeo",
+    badgeText: "🚀 R$ 130 em 3 dias (<2h/dia) • hub.xyz",
+    demoUrl: "https://ai.hub.xyz/r/WWBDQ473",
     githubUrl: "https://github.com/xxsusuxx"
   },
   {
@@ -102,7 +77,7 @@ export const projectsData: Project[] = [
     title: "Douradina MultiServiços",
     category: "web",
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 3,
     tagline: "Plataforma de contratação e gestão de serviços locais com WhatsApp & IA",
     description: "Hub de serviços para Douradina-PR e região que conecta clientes a profissionais de manutenção, reformas e limpezas através de formulários dinâmicos e atendimento integrado via WhatsApp.",
     fullDescription: "A Douradina MultiServiços é uma plataforma regional desenvolvida para centralizar a solicitação e orçamento de múltiplos serviços residenciais e comerciais (construção, reparos, limpeza pós-obra, capina, elétrica, etc.). Possui fluxo de triagem dinâmico, orçamentos diretamente direcionados para o WhatsApp e arquitetura preparada para automação com inteligência artificial.",
