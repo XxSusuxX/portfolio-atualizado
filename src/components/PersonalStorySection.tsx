@@ -14,6 +14,7 @@ import {
   Coins,
   ExternalLink
 } from 'lucide-react';
+import { HubEarningsCard } from './HubEarningsCard';
 
 export const PersonalStorySection: React.FC = () => {
   return (
@@ -130,12 +131,12 @@ export const PersonalStorySection: React.FC = () => {
                         hub.xyz & IA
                       </span>
                       <span className="text-xs font-mono text-zinc-400">
-                        Automação de Vídeos
+                        Treinamento de IA • Tarefas Manuais
                       </span>
                     </div>
                   </div>
                   <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-950/70 text-emerald-300 border border-emerald-800/50 font-semibold">
-                    R$ 130+ em 3 dias
+                    R$ 130.70 Verificado
                   </span>
                 </div>
 
@@ -143,12 +144,17 @@ export const PersonalStorySection: React.FC = () => {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-white font-display text-base font-bold">
                     <Coins className="w-4 h-4 text-emerald-400" />
-                    <span>Valor Imediato & Escala de Renda</span>
+                    <span>Fonte Principal de Renda & Valor Imediato</span>
                   </div>
                   <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                    Após finalizar a versão inicial do MVP do PetNexus, decidi migrar o foco para geração de valor com liquidez imediata. Desenvolvi uma esteira de produção e cortes de vídeos com IA no <strong className="text-white">hub.xyz</strong>.
+                    Após finalizar a versão inicial do MVP do PetNexus, migrei o foco estratégico para geração de valor com liquidez imediata no <strong className="text-white">hub.xyz</strong> — ensinando inteligência artificial a executar tarefas manuais do cotidiano (como carpir, lavar louça e ações práticas) através de vídeos demonstrativos.
                   </p>
                   
+                  {/* Official Hub Earnings Card Embedded */}
+                  <div className="pt-1">
+                    <HubEarningsCard allowZoom={true} />
+                  </div>
+
                   {/* Key Time / Dedication Highlight Box */}
                   <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-zinc-800 space-y-2">
                     <div className="flex items-center gap-2 text-xs font-mono font-semibold text-emerald-400">
@@ -156,7 +162,7 @@ export const PersonalStorySection: React.FC = () => {
                       <span>Menos de 2h por dia • Alta Eficiência</span>
                     </div>
                     <p className="text-xs text-zinc-300 leading-normal">
-                      Produzindo vídeos que no máximo tomaram <strong className="text-white">menos de 2 horas por dia</strong>, gerei mais de <strong className="text-emerald-400 font-semibold">R$ 130 em apenas 3 dias</strong> de validação.
+                      Produzindo vídeos demonstrativos em <strong className="text-white">menos de 2 horas por dia</strong>, gerei <strong className="text-emerald-400 font-semibold">R$ 130.70 em apenas 3 dias</strong> com status de Contribuidor Verificado no Hub, consolidando este projeto como minha fonte principal de renda.
                     </p>
                   </div>
                 </div>
@@ -173,7 +179,7 @@ export const PersonalStorySection: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2 text-xs text-zinc-300 font-mono">
                     <Video className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Esteiras ágeis com scripts Python & IA generativa</span>
+                    <span>Ensinando IA com vídeos práticos (carpir, lavar louça, etc.)</span>
                   </div>
                 </div>
 

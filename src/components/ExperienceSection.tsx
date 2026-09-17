@@ -11,13 +11,58 @@ import {
   Sparkles,
   ShieldAlert,
   FileText,
-  Printer
+  Printer,
+  ExternalLink,
+  Layers,
+  ArrowUpRight
 } from 'lucide-react';
 import { experiencesData, educationData } from '../data/portfolioData';
 
 interface ExperienceSectionProps {
   onOpenResume?: () => void;
 }
+
+const CompanyLogo: React.FC<{ companyId: string; companyName: string }> = ({ companyId }) => {
+  if (companyId === 'hub-audiovisual') {
+    return (
+      <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-emerald-500/40 flex items-center justify-center p-2.5 shadow-md flex-shrink-0 group-hover:border-emerald-400 transition-colors">
+        <svg viewBox="0 0 40 40" fill="none" className="w-full h-full drop-shadow-sm">
+          <path d="M20 3L36 12.2V27.8L20 37L4 27.8V12.2L20 3Z" fill="#00d182" />
+          <path d="M20 3L36 12.2L20 21.4L4 12.2L20 3Z" fill="#10b981" />
+          <path d="M20 21.4V37L36 27.8V12.2L20 21.4Z" fill="#059669" />
+          <path d="M20 21.4L4 12.2V27.8L20 37V21.4Z" fill="#047857" />
+          <path d="M20 10L29 15.2V24.8L20 30L11 24.8V15.2L20 10Z" fill="#ffffff" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (companyId === 'petnexus') {
+    return (
+      <div className="w-12 h-12 rounded-xl bg-indigo-950/80 border border-indigo-500/40 flex items-center justify-center p-2.5 shadow-md flex-shrink-0 group-hover:border-indigo-400 transition-colors">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-indigo-400">
+          <path d="M10 5.172a2 2 0 0 0-3.414-1.414l-3.879 3.88a2 2 0 0 0 0 2.828l3.879 3.879A2 2 0 0 0 10 13.06" />
+          <path d="M14 5.172a2 2 0 0 1 3.414-1.414l3.879 3.88a2 2 0 0 1 0 2.828l-3.879 3.879A2 2 0 0 1 14 13.06" />
+          <circle cx="12" cy="16" r="3" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (companyId === 'gazin-colchoes') {
+    return (
+      <div className="w-12 h-12 rounded-xl bg-amber-950/60 border border-amber-500/40 flex items-center justify-center p-2.5 shadow-md flex-shrink-0">
+        <Building2 className="w-6 h-6 text-amber-400" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-12 h-12 rounded-xl bg-blue-950/60 border border-blue-500/40 flex items-center justify-center p-2.5 shadow-md flex-shrink-0">
+      <Sparkles className="w-6 h-6 text-blue-400" />
+    </div>
+  );
+};
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResume }) => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
@@ -79,8 +124,10 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className={`rounded-2xl border p-6 sm:p-8 transition-all ${
-                  exp.type === 'founder'
+                className={`group rounded-2xl border p-6 sm:p-8 transition-all ${
+                  exp.id === 'hub-audiovisual'
+                    ? 'bg-gradient-to-r from-emerald-950/30 via-zinc-900 to-zinc-900 border-emerald-500/40 shadow-xl shadow-emerald-950/20'
+                    : exp.id === 'petnexus'
                     ? 'bg-gradient-to-r from-indigo-950/40 via-zinc-900 to-zinc-900 border-indigo-500/40 shadow-xl shadow-indigo-950/20'
                     : exp.type === 'leadership'
                     ? 'bg-zinc-900/60 border-amber-500/30'
@@ -88,27 +135,43 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
                 }`}
               >
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                  <div className="space-y-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
-                        {exp.role}
-                      </h3>
-                      {exp.highlightBadge && (
-                        <span className="px-3 py-0.5 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-800/50 text-xs font-semibold">
-                          {exp.highlightBadge}
-                        </span>
-                      )}
-                    </div>
+                  <div className="flex items-start gap-3.5">
+                    {/* Company Logo Icon */}
+                    <CompanyLogo companyId={exp.id} companyName={exp.company} />
 
-                    <p className="text-sm font-semibold text-indigo-400 flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-indigo-400" />
-                      <span>{exp.company}</span>
-                    </p>
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                          {exp.role}
+                        </h3>
+                        {exp.highlightBadge && (
+                          <span className={`px-3 py-0.5 rounded-full text-xs font-semibold ${
+                            exp.id === 'hub-audiovisual'
+                              ? 'bg-emerald-950 text-emerald-300 border border-emerald-800/60'
+                              : exp.id === 'petnexus'
+                              ? 'bg-indigo-950 text-indigo-300 border border-indigo-800/50'
+                              : 'bg-zinc-800 text-zinc-300 border border-zinc-700'
+                          }`}>
+                            {exp.highlightBadge}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className={`text-sm font-semibold flex items-center gap-2 ${
+                        exp.id === 'hub-audiovisual' ? 'text-emerald-400' : 'text-indigo-400'
+                      }`}>
+                        <Building2 className="w-4 h-4" />
+                        <span>
+                          {exp.company}
+                          {exp.employmentType && ` · ${exp.employmentType}`}
+                        </span>
+                      </p>
+                    </div>
                   </div>
 
                   <div className="flex flex-col items-start sm:items-end gap-1 text-xs text-zinc-400 font-mono">
                     <span className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-950 border border-zinc-800">
-                      <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+                      <Calendar className={`w-3.5 h-3.5 ${exp.id === 'hub-audiovisual' ? 'text-emerald-400' : 'text-indigo-400'}`} />
                       {exp.period}
                     </span>
                     <span className="flex items-center gap-1.5 text-zinc-400">
@@ -122,11 +185,61 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
                 <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300 pt-2 border-t border-zinc-800/60">
                   {exp.highlights.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                        exp.id === 'hub-audiovisual' ? 'text-emerald-400' : 'text-indigo-400'
+                      }`} />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
+
+                {/* Media preview card (e.g. PetNexus SaaS) */}
+                {exp.media && (
+                  <div className="mt-4 p-4 rounded-xl bg-zinc-950/90 border border-indigo-500/30 hover:border-indigo-400/60 transition-all space-y-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-xs font-mono font-bold text-indigo-300 flex items-center gap-1.5">
+                        <Layers className="w-3.5 h-3.5 text-indigo-400" />
+                        {exp.media.title}
+                      </span>
+                      {exp.media.tag && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-800/50 font-semibold">
+                          {exp.media.tag}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-zinc-300 leading-relaxed">
+                      {exp.media.description}
+                    </p>
+                    <a
+                      href={exp.media.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-mono underline transition-colors pt-1"
+                    >
+                      <span>Acessar plataforma: {exp.media.url}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                )}
+
+                {/* Hub Action Link */}
+                {exp.id === 'hub-audiovisual' && exp.link && (
+                  <div className="mt-4 p-3.5 rounded-xl bg-gradient-to-r from-emerald-950/30 via-zinc-950 to-zinc-950 border border-emerald-500/30 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 text-xs text-emerald-300">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="font-mono">Fonte Principal de Renda • hub.xyz (Código: WWBDQ473)</span>
+                    </div>
+                    <a
+                      href={exp.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/30 transition-all"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Acessar Hub</span>
+                    </a>
+                  </div>
+                )}
 
                 {/* Stack Pills if available */}
                 {exp.stack && (

@@ -32,6 +32,14 @@ export interface Experience {
   stack?: string[];
   type: 'founder' | 'freelancer' | 'leadership' | 'volunteer' | 'operational' | 'support';
   highlightBadge?: string;
+  employmentType?: string;
+  link?: string;
+  media?: {
+    title: string;
+    description: string;
+    url: string;
+    tag?: string;
+  };
 }
 
 export interface Education {

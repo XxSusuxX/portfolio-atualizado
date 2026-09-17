@@ -29,7 +29,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   if (!isOpen) return null;
 
   const mainProjects = projectsData
-    .filter(p => p.id === 'petnexus' || p.id === 'douradina-multiservicos' || p.id === 'automacao-youtube-ia')
+    .filter(p => p.id === 'petnexus' || p.id === 'automacao-youtube-ia')
     .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99));
 
   const handlePrint = () => {
@@ -55,20 +55,20 @@ ${profileData.bioText}
 
 02. PROJETOS PRINCIPAIS
 1. PetNexus (SaaS Multi-Tenant): Versão inicial do MVP 100% finalizada (https://petnexus.vercel.app/) e página de ofertas no ar (https://petnexusoferta.vercel.app/).
-2. Automação de Conteúdo, hub.xyz & Vídeos com IA: Pipelines de vídeo com IA. Menos de 2h/dia gerando R$ 130 em 3 dias no hub.xyz (https://ai.hub.xyz/r/WWBDQ473).
-3. Douradina MultiServiços: Hub de serviços para Douradina-PR e região que conecta clientes a profissionais.
+2. Automação de Conteúdo, hub.xyz & Vídeos Para IA: Ferramenta onde ensinamos inteligência artificial a executar tarefas manuais (como carpir, lavar louça e afins). Fonte principal de renda com R$ 130.70 comprovados em 3 dias (<2h/dia) no hub.xyz como Contribuidor Verificado (https://ai.hub.xyz/r/WWBDQ473).
 
 03. EXPERIÊNCIA PROFISSIONAL
-• Fundador e Desenvolvedor Full-Stack (Maio 2025 – Atual) | PetNexus (SaaS)
-• Desenvolvedor Front-end (Voluntário) (Nov 2023 – Abr 2024) | Projeto Base
+• Criador de Conteúdo Audiovisual & Edição (Set de 2026 – o momento · 1 mês) | Hub · Autônomo (Remoto)
+• Desenvolvedor de Software (Projetos Autorais & SaaS) (Jun de 2026 – Set de 2026 · 4 meses) | PetNexus · Autônomo (Douradina, PR · Remoto)
 • Operador de Espumação Noturno & Líder de Setor (Maio 2024 – Março 2025) | Gazin Colchões
+• Desenvolvedor Front-end (Voluntário) (Nov 2023 – Abr 2024) | Projeto Base
 
 04. FORMAÇÃO ACADÊMICA
 • Técnico em Desenvolvimento de Sistemas (2022 - 2023) - Colégio Estadual Cleoracy Aparecida Gil
 • Engenheiro Front-end (2023 - 2024) - EBAC
 
 05. PRINCIPAIS COMPETÊNCIAS
-Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automações de Vídeo & Mídia com IA, hub.xyz, APIs REST, Tailwind CSS, Visão de Produto & SaaS Multi-Tenant.
+Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Treinamento de IA para Tarefas Manuais (hub.xyz), Datasets em Vídeo, APIs REST, Tailwind CSS, Visão de Produto & SaaS Multi-Tenant.
     `.trim();
 
     navigator.clipboard.writeText(cvText);
@@ -237,8 +237,17 @@ Next.js / React, TypeScript, Supabase (Auth/RLS), PostgreSQL, Python, Automaçõ
                   <div key={exp.id} className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 space-y-2 cv-card">
                     <div className="flex flex-wrap justify-between items-start gap-2">
                       <div>
-                        <h3 className="text-xs sm:text-sm font-bold text-white font-display">{exp.role}</h3>
-                        <p className="text-xs font-semibold text-indigo-400">{exp.company} • {exp.location}</p>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-xs sm:text-sm font-bold text-white font-display">{exp.role}</h3>
+                          {exp.highlightBadge && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-zinc-950 text-indigo-300 border border-indigo-800/40 font-semibold">
+                              {exp.highlightBadge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs font-semibold text-indigo-400">
+                          {exp.company}{exp.employmentType ? ` · ${exp.employmentType}` : ''} • {exp.location}
+                        </p>
                       </div>
                       <span className="text-xs font-mono text-zinc-400 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
                         {exp.period}

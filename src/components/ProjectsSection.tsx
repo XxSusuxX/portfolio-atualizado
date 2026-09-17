@@ -21,6 +21,7 @@ import {
 import { projectsData } from '../data/portfolioData';
 import { Project, ProjectCategory } from '../types';
 import { PetNexusPreview } from './PetNexusPreview';
+import { HubEarningsCard } from './HubEarningsCard';
 
 const TikTokIcon: React.FC<{ className?: string }> = ({ className = "w-3.5 h-3.5" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -369,6 +370,31 @@ export const ProjectsSection: React.FC = () => {
                     </div>
                   )}
 
+                  {/* Hub Official Earnings Callout on Card */}
+                  {project.id === 'automacao-youtube-ia' && (
+                    <div 
+                      onClick={() => setActiveModalProject(project)}
+                      className="cursor-pointer p-3 rounded-xl bg-gradient-to-r from-emerald-950/40 via-zinc-950 to-zinc-950 border border-emerald-500/40 hover:border-emerald-400 transition-all space-y-1.5 group/card"
+                    >
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-bold text-emerald-300 flex items-center gap-1.5 font-mono">
+                          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                          Cartão de Ganhos Oficial:
+                        </span>
+                        <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                          VERIFICADO ✓
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-zinc-300">Fonte Principal de Renda:</span>
+                        <span className="text-sm font-black text-white font-mono">R$ 130.70</span>
+                      </div>
+                      <span className="text-[10px] text-zinc-400 block group-hover/card:text-emerald-300 transition-colors">
+                        Ver comprovante emitido pelo Hub & especificações →
+                      </span>
+                    </div>
+                  )}
+
                 </div>
 
                 {/* Card Actions Footer */}
@@ -524,6 +550,12 @@ export const ProjectsSection: React.FC = () => {
                       <span>Prévia Interativa das Telas do Sistema (Portal do Cliente, Cadastrar Pet, Admin):</span>
                     </h4>
                     <PetNexusPreview />
+                  </div>
+                )}
+
+                {activeModalProject.id === 'automacao-youtube-ia' && (
+                  <div className="space-y-3 pt-2 border-t border-zinc-800">
+                    <HubEarningsCard />
                   </div>
                 )}
 

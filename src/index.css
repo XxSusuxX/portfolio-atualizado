@@ -57,12 +57,12 @@
 /* Print / PDF Export Styles */
 @media print {
   @page {
-    margin: 8mm 10mm;
+    margin: 10mm 12mm;
     size: A4 portrait;
   }
 
   html, body {
-    background-color: #09090b !important;
+    background-color: #0b0d13 !important;
     color: #f4f4f5 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -77,7 +77,7 @@
 
   .cv-modal-backdrop {
     position: static !important;
-    background: #09090b !important;
+    background: #0b0d13 !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: visible !important;
@@ -97,7 +97,7 @@
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    background-color: #09090b !important;
+    background-color: #0b0d13 !important;
     color: #f4f4f5 !important;
     box-shadow: none !important;
     border: none !important;
@@ -106,10 +106,26 @@
     print-color-adjust: exact !important;
   }
 
+  .printable-cv h1, 
+  .printable-cv h2, 
+  .printable-cv h3, 
+  .printable-cv h4 {
+    color: #ffffff !important;
+  }
+
+  .printable-cv p, 
+  .printable-cv li, 
+  .printable-cv span {
+    color: #d4d4d8 !important;
+  }
+
   .cv-card, .cv-section-block {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
     -webkit-column-break-inside: avoid !important;
+    background-color: #12151e !important;
+    border-color: #222838 !important;
+    box-shadow: none !important;
   }
 
   .printable-cv * {

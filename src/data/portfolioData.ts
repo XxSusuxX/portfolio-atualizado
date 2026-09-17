@@ -4,7 +4,7 @@ export const profileData: ProfileData = {
   name: "Gabriel Suenaga",
   roleTitle: "Desenvolvedor de Software & CEO",
   subtitle: "Criador do PetNexus (SaaS Multi-Tenant) e especialista em Next.js, TypeScript e automações com IA.",
-  bioText: "Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus (MVP completo com sistema e página de ofertas no ar), especialista em Next.js/TypeScript, pipelines de vídeo com IA monetizados no hub.xyz e automações ágeis.",
+  bioText: "Desenvolvedor de Software focado em automação, Inteligência Artificial e sistemas web. Trajetória marcada por resiliência, liderança de equipe sob pressão no setor industrial e aplicação prática da tecnologia. Criador da plataforma SaaS PetNexus (MVP completo com sistema e página de ofertas no ar), especialista em Next.js/TypeScript, treinamento de modelos de IA para tarefas manuais no hub.xyz e automações ágeis.",
   location: "Douradina, PR - Brasil",
   phone: "(44) 99828-9752",
   email: "gabriel.hneus@gmail.com",
@@ -49,26 +49,27 @@ export const projectsData: Project[] = [
   },
   {
     id: "automacao-youtube-ia",
-    title: "Automação de Conteúdo, hub.xyz & Vídeos com IA",
+    title: "Automação de Conteúdo, hub.xyz & Vídeos Para IA",
     category: "automation",
     featured: true,
     featuredOrder: 2,
-    tagline: "Pipelines de corte e vídeos com IA: menos de 2h/dia gerando R$ 130 em 3 dias no hub.xyz e escala",
-    description: "Pipelines de corte e produção de vídeos com IA no hub.xyz. Com dedicação de menos de 2h por dia, gerou mais de R$ 130 em apenas 3 dias. O foco agora é acelerar a frequência de vídeos diários para consolidar como renda principal e reinvestir em novos negócios.",
-    fullDescription: "Após a conclusão da versão inicial do MVP do PetNexus, migrei estrategicamente para a automação e criação de conteúdo audiovisual com foco em valor e retorno imediato. Desenvolvi esteiras automatizadas de corte e produção de vídeos com Inteligência Artificial para o hub.xyz e canais digitais. Produzindo vídeos que demandaram no máximo 2 horas (menos de 2h por dia), gerei mais de R$ 130 de lucro em apenas 3 dias. A estratégia atual consiste em acelerar a frequência de postagens diárias através de scripts e ferramentas de IA para transformar essa fonte em renda principal e financiar novos negócios em tecnologia.",
-    stack: ["Python", "IA Generativa", "FFmpeg", "hub.xyz", "Automação de Vídeo", "APIs de IA"],
+    tagline: "Treinamento de IA para tarefas manuais e do cotidiano (como carpir, lavar louça e afins) no hub.xyz: Fonte principal de renda com R$ 130.70 comprovados em 3 dias (<2h/dia)",
+    description: "Ferramenta onde ensinamos inteligência artificial a executar tarefas manuais e do cotidiano (como carpir, lavar louça, organização e diversas outras ações práticas) por meio de vídeos demonstrativos. Atualmente consolidado como fonte principal de renda: com dedicação de menos de 2h por dia, gerou R$ 130.70 de total ganho comprovado em apenas 3 dias no hub.xyz (Status: Contribuidor Verificado).",
+    fullDescription: "O hub.xyz é a ferramenta onde atuo com foco estratégico como fonte principal de renda, voltada ao treinamento de modelos de Inteligência Artificial para a execução de tarefas manuais e físicas do mundo real — ensinando a IA a realizar atividades práticas como carpir, lavar louça, organizar ambientes, manipulação de objetos e tarefas operacionais através de vídeos demonstrativos e datasets visuais. Com dedicação de menos de 2 horas por dia, gerei R$ 130.70 de total ganho oficial comprovado em apenas 3 dias de validação como Contribuidor Verificado. O objetivo é acelerar a frequência diária de envios para maximizar essa renda e alavancar capital para reinvestir em novos negócios em tecnologia.",
+    stack: ["hub.xyz", "Treinamento de IA", "Visão Computacional", "Datasets em Vídeo", "IA Generativa", "Automação"],
     architectureSpecs: [
-      "Esteiras com IA para roteirização, cortes dinâmicos e síntese audiovisual otimizada",
-      "Dedicação de menos de 2 horas por dia com retorno comprovado de mais de R$ 130 em 3 dias",
-      "Processamento e renderização programática de vídeo e áudio utilizando FFmpeg e Python",
-      "Meta operacional de elevação da frequência de postagens diárias para alavancagem de capital e reinvestimento"
+      "Cartão de Ganhos Oficial: Validação comprovada de R$ 130.70 emitida pelo ecossistema Hub (Status: Contribuidor Verificado)",
+      "Gravação e estruturação técnica de vídeos demonstrativos para ensinar IA a realizar tarefas manuais do mundo real (como carpir, lavar louça e atividades práticas)",
+      "Treinamento de modelos de IA através de dados visuais do mundo real e aprendizado por demonstração",
+      "Dedicação de menos de 2 horas por dia com retorno comprovado de R$ 130.70 em 3 dias",
+      "Consolidação como fonte principal de renda com meta de acelerar a frequência de envios para reinvestimento"
     ],
     metrics: [
       { label: "Tempo/Dia", value: "< 2h por dia" },
-      { label: "Validação", value: "R$ 130+ em 3 dias" },
-      { label: "Estratégia", value: "Escalar & Reinvestir" }
+      { label: "Total Ganho", value: "R$ 130.70 (Verificado)" },
+      { label: "Foco", value: "Fonte Principal de Renda" }
     ],
-    badgeText: "🚀 R$ 130 em 3 dias (<2h/dia) • hub.xyz",
+    badgeText: "💎 Renda Principal • R$ 130.70 Ganho Verificado",
     demoUrl: "https://ai.hub.xyz/r/WWBDQ473",
     githubUrl: "https://github.com/xxsusuxx"
   },
@@ -163,33 +164,43 @@ export const projectsData: Project[] = [
 
 export const experiencesData: Experience[] = [
   {
-    id: "petnexus",
-    role: "Fundador e Desenvolvedor Full-Stack",
-    company: "PetNexus (SaaS)",
-    period: "Maio 2025 – Atual",
-    location: "Remoto / Douradina, PR",
+    id: "hub-audiovisual",
+    role: "Criador de Conteúdo Audiovisual & Edição",
+    company: "Hub",
+    employmentType: "Autônomo",
+    period: "Set de 2026 – o momento · 1 mês",
+    location: "Remoto",
     type: "founder",
-    highlightBadge: "Atualmente • SaaS Próprio",
+    highlightBadge: "Atual • Fonte Principal de Renda",
+    link: "https://ai.hub.xyz/r/WWBDQ473",
     highlights: [
-      "Arquitetura e desenvolvimento completo do PetNexus, um SaaS Multi-Tenant para gestão inteligente de pet shops e clínicas veterinárias.",
-      "Stack de ponta: Next.js (App Router), React, TypeScript, Supabase (PostgreSQL, Row Level Security - RLS, Auth) e Zod.",
-      "Modelagem relacional para agendamentos, estoque, prontuários de pets e financeiro com isolamento total de dados."
+      "Produção, captação e edição de conteúdo audiovisual focado no registro de serviços gerais, rotinas de trabalho e tarefas manuais para o hub.xyz.",
+      "Atuação direta no planejamento visual, captação de imagem e pós-produção (edição de vídeo e áudio), garantindo clareza, dinamismo e engajamento do conteúdo final para as redes/plataforma."
     ],
-    stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "RLS", "Zod"]
+    stack: ["hub.xyz", "Captação de Imagem", "Edição de Vídeo", "Edição de Áudio", "Pós-produção", "Planejamento Visual", "Datasets Audiovisuais"]
   },
   {
-    id: "frontend-voluntario",
-    role: "Desenvolvedor Front-end (Voluntário)",
-    company: "Projeto Base (Saúde Mental & Psicanálise)",
-    period: "Nov 2023 – Abr 2024",
-    location: "Remoto",
-    type: "freelancer",
-    highlightBadge: "Projeto Social",
+    id: "petnexus",
+    role: "Desenvolvedor de Software (Projetos Autorais & SaaS)",
+    company: "PetNexus",
+    employmentType: "Autônomo",
+    period: "Jun de 2026 – Set de 2026 · 4 meses",
+    location: "Douradina, Paraná, Brasil · Remoto",
+    type: "founder",
+    highlightBadge: "SaaS Autoral • MVP 100%",
+    link: "https://petnexus.vercel.app/",
     highlights: [
-      "Atuação no desenvolvimento web do projeto social voltado para ampliar o acesso à psicanálise e cuidar da saúde mental.",
-      "Construção de componentes front-end responsivos e otimização da experiência do usuário (UX/UI)."
+      "Arquitetura e desenvolvimento completo do PetNexus, um ecossistema SaaS autoral focado na gestão inteligente e automação para pet shops.",
+      "Projeto desenvolvido para aplicação prática de tecnologias modernas: criação do sistema end-to-end, modelagem de banco de dados, regras de negócio e integrações usando React, Next.js, TypeScript e Supabase.",
+      "Sistema SaaS para Gestão de Pet-Shop: Uma plataforma completa em nuvem desenvolvida para modernizar a gestão de pet shops, clínicas veterinárias e centros de estética animal, reunindo em um único sistema todas as ferramentas necessárias para administrar o negócio de forma simples, eficiente e automatizada."
     ],
-    stack: ["React", "JavaScript", "CSS3", "UX/UI"]
+    media: {
+      title: "Miniatura de Sistema SaaS para Gestão de Pet-Shop",
+      description: "Uma plataforma completa em nuvem desenvolvida para modernizar a gestão de pet shops, clínicas veterinárias e centros de estética animal, reunindo em um único sistema todas as ferramentas necessárias para administrar o negócio de forma simples, eficiente e automatizada.",
+      url: "https://petnexus.vercel.app/",
+      tag: "Automação e Automação de processos"
+    },
+    stack: ["React", "Next.js", "TypeScript", "Supabase", "PostgreSQL", "Automação de Processos", "SaaS Multi-Tenant"]
   },
   {
     id: "gazin-colchoes",
@@ -198,13 +209,27 @@ export const experiencesData: Experience[] = [
     period: "Maio 2024 – Março 2025",
     location: "Douradina, PR",
     type: "leadership",
-    highlightBadge: "Liderança de Turno",
+    highlightBadge: "Liderança de Turno Industrial",
     highlights: [
       "Operação da máquina de espumação e liderança da equipe do setor no turno da noite, organizando tarefas de produção.",
       "Como colaborador mais experiente, responsável por garantir a segurança, resolver imprevistos e otimizar o desempenho coletivo.",
       "Vivência que fortaleceu minha liderança prática, gestão de crise, pontualidade e tomada de decisão em ambiente industrial."
     ],
     stack: ["Liderança de Equipe", "Gestão Operacional", "Controle de Qualidade"]
+  },
+  {
+    id: "frontend-voluntario",
+    role: "Desenvolvedor Front-end (Voluntário)",
+    company: "Projeto Base (Saúde Mental & Psicanálise)",
+    period: "Nov 2023 – Abr 2024",
+    location: "Remoto",
+    type: "volunteer",
+    highlightBadge: "Projeto Social",
+    highlights: [
+      "Atuação no desenvolvimento web do projeto social voltado para ampliar o acesso à psicanálise e cuidar da saúde mental.",
+      "Construção de componentes front-end responsivos e otimização da experiência do usuário (UX/UI)."
+    ],
+    stack: ["React", "JavaScript", "CSS3", "UX/UI"]
   }
 ];
 
