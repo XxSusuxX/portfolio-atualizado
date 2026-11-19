@@ -6,3 +6,16 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Next.js
+.next/
+out/
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# Local agents & OS metadata
+.agents/
+skills-lock.json
+desktop.ini
+Thumbs.db
+
