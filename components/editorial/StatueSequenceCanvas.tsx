@@ -224,9 +224,9 @@ export const StatueSequenceCanvas: React.FC<StatueSequenceCanvasProps> = ({
         ctx.globalAlpha = 1.0;
         ctx.drawImage(img, dx, dy, dw, dh);
 
-        // Native Dark Scrim for Chapters 4 & 5 with EXPLICIT globalAlpha = 1.0 (Zero flickering)
-        if (clampedProgress > 0.72) {
-          const scrimAlpha = Math.min(0.86, ((clampedProgress - 0.72) / 0.18) * 0.86);
+        // Native subtle Dark Scrim keeping the 252-frame statue animation clearly visible up to frame 251
+        if (clampedProgress > 0.55) {
+          const scrimAlpha = Math.min(0.46, ((clampedProgress - 0.55) / 0.35) * 0.46);
           ctx.globalAlpha = 1.0;
           ctx.fillStyle = `rgba(5, 5, 8, ${scrimAlpha})`;
           ctx.fillRect(0, 0, cw, ch);

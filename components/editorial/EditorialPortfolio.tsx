@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ArrowUpRight, Compass, Layers, Target } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Compass, Layers, Target, MessageCircle } from 'lucide-react';
 import { PROFILE_DATA } from '@/data/portfolioData';
 import { StatueSequenceCanvas } from './StatueSequenceCanvas';
 import { EditorialGridOverlay } from './EditorialGridOverlay';
@@ -36,6 +36,62 @@ const PILLARS = [
   },
 ];
 
+const PAIN_POINTS = [
+  {
+    code: '01',
+    text: 'Seu site atual é lento ou parece desatualizado e não passa confiança.',
+  },
+  {
+    code: '02',
+    text: 'Você perde vendas para concorrentes porque não tem uma presença online profissional.',
+  },
+  {
+    code: '03',
+    text: 'Não aparece no Google nem recebe contatos diretamente pelo site.',
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    step: '01',
+    title: 'Briefing & Estratégia',
+    description: 'Entendemos seu objetivo e seu público-alvo.',
+  },
+  {
+    step: '02',
+    title: 'Design & Desenvolvimento',
+    description: 'Criamos um layout moderno, responsivo e exclusivo.',
+  },
+  {
+    step: '03',
+    title: 'Lançamento & Otimização',
+    description: 'Publicamos seu site otimizado para o Google e rápido.',
+  },
+];
+
+const VALUE_INCLUDES = [
+  {
+    icon: '⚡',
+    title: 'Ultra Velocidade',
+    description: 'Carregamento rápido em celulares e computadores.',
+  },
+  {
+    icon: '📱',
+    title: '100% Responsivo',
+    description: 'Perfeito em qualquer tamanho de tela.',
+  },
+  {
+    icon: '🔍',
+    title: 'SEO de Alta Performance',
+    description: 'Estrutura pronta para ser encontrada no Google.',
+  },
+  {
+    icon: '🔒',
+    title: 'Segurança & Suporte',
+    description: 'Certificado SSL incluso e suporte pós-lançamento.',
+  },
+];
+
 export const EditorialPortfolio: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<number>(0);
@@ -64,12 +120,12 @@ export const EditorialPortfolio: React.FC = () => {
           progressRef.current = p;
 
           // Mapeamento dos 4 itens da navbar ao longo do scroll:
-          // 0: Início (0.00 - 0.23)
-          // 1: Construção (0.23 - 0.48)
-          // 2: Projetos (0.48 - 0.82)
+          // 0: Início (0.00 - 0.16)
+          // 1: Construção (0.16 - 0.34)
+          // 2: Projetos & Soluções (0.34 - 0.82)
           // 3: Contato (0.82 - 1.00)
           const nextSection =
-            p < 0.23 ? 0 : p < 0.48 ? 1 : p < 0.82 ? 2 : 3;
+            p < 0.16 ? 0 : p < 0.34 ? 1 : p < 0.82 ? 2 : 3;
           setActiveSection((prev) => (prev !== nextSection ? nextSection : prev));
         },
       });
@@ -171,16 +227,23 @@ export const EditorialPortfolio: React.FC = () => {
           },
         }
       );
+      // Recalcula limites após montagem completa para garantir mapeamento exato de 000 a 251 frames
+      ScrollTrigger.refresh();
     }, containerRef);
 
-    return () => ctx.revert();
+    const rafRefresh = requestAnimationFrame(() => ScrollTrigger.refresh());
+
+    return () => {
+      cancelAnimationFrame(rafRefresh);
+      ctx.revert();
+    };
   }, []);
 
   const handleNavigateSection = (index: number) => {
     if (!containerRef.current) return;
     const totalScrollable = containerRef.current.scrollHeight - window.innerHeight;
     // 0: Início, 1: Construção, 2: Projetos, 3: Contato
-    const targets = [0, 0.30, 0.62, 0.94];
+    const targets = [0, 0.20, 0.38, 0.92];
     const targetY = totalScrollable * (targets[index] ?? 0);
     window.scrollTo({ top: targetY, behavior: 'smooth' });
   };
@@ -201,7 +264,7 @@ export const EditorialPortfolio: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-[440vh] bg-obsidian text-offwhite overflow-x-clip"
+      className="relative w-full min-h-[580vh] bg-obsidian text-offwhite overflow-x-clip"
     >
       {/* =========================================================
           CAMADA 1 — BACKGROUND PROFUNDO (Velocidade Lenta: yPercent -10%)
@@ -275,7 +338,7 @@ export const EditorialPortfolio: React.FC = () => {
           CAMADA 3 — FOREGROUND / NARRATIVA ESCANEÁVEL EM 4 CAPÍTULOS
           ========================================================= */}
       <main className="relative z-20 w-full px-5 sm:px-12 lg:px-20">
-        <div className="max-w-[1440px] mx-auto min-h-[440vh] flex flex-col justify-between gap-20 sm:gap-28 lg:gap-36">
+        <div className="max-w-[1440px] mx-auto min-h-[580vh] flex flex-col justify-between gap-20 sm:gap-28 lg:gap-36">
           {/* =========================================================
               CAPÍTULO 01 — HERO (Frames 000–062 | Scroll 0%–25%)
               Scrub Typewriter + Depth Layering
@@ -396,54 +459,164 @@ export const EditorialPortfolio: React.FC = () => {
           </section>
 
           {/* =========================================================
-              CAPÍTULO 04 — FECHAMENTO (Scroll 75%–100%)
-              Convite direto + CTAs + Rodapé
+              DIAGNÓSTICO — SEU NEGÓCIO PRECISA DE UM SITE SE...
+              Identificação do Problema
               ========================================================= */}
-          <section className="shrink-0 relative min-h-screen flex flex-col justify-between pb-12 sm:pb-20 pt-24">
-            <div className="editorial-reveal max-w-2xl my-auto mb-12">
-              <span className="font-mono text-[10px] tracking-[0.26em] uppercase text-emerald-300/90 block mb-2">
-                03 // PRÓXIMO CAPÍTULO
+          <section className="shrink-0 relative min-h-[85vh] flex items-center py-20">
+            <div className="editorial-reveal max-w-4xl w-full">
+              <span className="font-mono text-[10px] tracking-[0.26em] uppercase text-red-400/90 block mb-2">
+                03 // DIAGNÓSTICO DIGITAL
               </span>
 
               <ScrollTypewriter
                 as="h2"
-                text="Vamos construir o próximo."
+                text="Seu negócio precisa de um site se..."
                 initialChars={1}
-                cursorColor="mint"
-                className="font-serif text-[clamp(1.95rem,5.2vw,4.5rem)] leading-[1.16] sm:leading-[1.05] text-offwhite mb-4 font-normal"
+                cursorColor="gold"
+                className="font-serif text-[clamp(1.9rem,4.6vw,3.75rem)] leading-[1.16] sm:leading-[1.06] text-offwhite mb-8 font-normal"
               />
 
-              <p className="font-sans text-sm sm:text-lg leading-relaxed text-offwhite/85 font-light mb-8">
-                Aberto a novos projetos, consultorias e desafios de engenharia.
-              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                {PAIN_POINTS.map((pain) => (
+                  <div
+                    key={pain.code}
+                    className="p-5 sm:p-6 rounded-sm border border-red-500/20 bg-black/45 backdrop-blur-[3px] hover:border-red-400/40 transition-colors flex flex-col justify-between gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-base leading-none" aria-hidden="true">
+                        ❌
+                      </span>
+                      <span className="font-mono text-[10px] tracking-[0.22em] text-muted">
+                        [{pain.code}]
+                      </span>
+                    </div>
+                    <p className="font-sans text-sm leading-relaxed text-offwhite/85 font-light">
+                      {pain.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3.5 sm:gap-5">
-                <a
-                  ref={magneticBtnRef}
-                  href={PROFILE_DATA.whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{
-                    transform: `translate(${btnOffset.x}px, ${btnOffset.y}px)`,
-                  }}
-                  className="inline-flex items-center justify-center gap-3 px-7 py-4 bg-offwhite text-obsidian hover:bg-white hover:shadow-[0_0_28px_rgba(255,255,255,0.22)] font-mono text-xs tracking-[0.2em] uppercase transition-all duration-300 w-full sm:w-auto"
-                >
-                  <span>Iniciar um Projeto</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+          {/* =========================================================
+              PROCESSO SIMPLES & DIFERENCIAIS / O QUE ESTÁ INCLUSO
+              ========================================================= */}
+          <section className="shrink-0 relative min-h-screen flex flex-col justify-center py-20">
+            <div className="editorial-reveal max-w-5xl w-full">
+              <span className="font-mono text-[10px] tracking-[0.26em] uppercase text-cyan-300/90 block mb-2">
+                04 // PROCESSO &amp; TRANSPARÊNCIA
+              </span>
 
-                <a
-                  href={PROFILE_DATA.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-4 border border-white/25 hover:border-white text-offwhite font-mono text-xs tracking-[0.18em] uppercase transition-all duration-300 w-full sm:w-auto"
-                >
-                  <span>Explorar GitHub</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
+              <ScrollTypewriter
+                as="h2"
+                text="Como funciona o processo."
+                initialChars={1}
+                cursorColor="mint"
+                className="font-serif text-[clamp(1.9rem,4.6vw,3.75rem)] leading-[1.16] sm:leading-[1.06] text-offwhite mb-8 font-normal"
+              />
+
+              {/* Etapas Simples */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-14">
+                {PROCESS_STEPS.map((item) => (
+                  <div
+                    key={item.step}
+                    className="p-5 sm:p-6 rounded-sm border border-white/10 bg-black/45 backdrop-blur-[3px] hover:border-cyan-300/35 transition-colors"
+                  >
+                    <span className="font-mono text-[11px] tracking-[0.24em] text-cyan-300 block mb-3">
+                      ETAPA {item.step}
+                    </span>
+                    <h3 className="font-serif text-lg sm:text-xl text-offwhite font-normal mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="font-sans text-xs sm:text-sm leading-relaxed text-offwhite/75 font-light">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Diferenciais / O que está incluso */}
+              <div className="flex items-center gap-3 mb-5 pb-3 border-b border-white/10">
+                <span className="font-mono text-[11px] sm:text-xs tracking-[0.24em] uppercase text-amber-300 font-medium">
+                  DIFERENCIAIS • O QUE ESTÁ INCLUSO
+                </span>
+                <span className="hidden sm:block w-12 h-[1px] bg-white/20" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {VALUE_INCLUDES.map((feat) => (
+                  <div
+                    key={feat.title}
+                    className="p-5 rounded-sm border border-white/10 bg-black/45 backdrop-blur-[3px] hover:border-amber-300/35 transition-colors"
+                  >
+                    <span className="text-lg block mb-2.5" aria-hidden="true">
+                      {feat.icon}
+                    </span>
+                    <h4 className="font-serif text-base sm:text-lg text-offwhite font-normal mb-1.5">
+                      {feat.title}
+                    </h4>
+                    <p className="font-sans text-xs leading-relaxed text-offwhite/75 font-light">
+                      {feat.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* =========================================================
+              CAPÍTULO FINAL — CTA FORTE & DIAGNÓSTICO GRATUITO (Frame 251)
+              ========================================================= */}
+          <section className="shrink-0 relative min-h-screen flex flex-col justify-between pb-12 sm:pb-20 pt-24">
+            <div className="editorial-reveal my-auto mb-12 w-full">
+              <div className="border border-amber-400/35 bg-gradient-to-br from-[#140f05]/90 via-[#08080c]/90 to-[#050508]/95 shadow-[0_0_50px_rgba(245,158,11,0.12)] backdrop-blur-md rounded-lg p-6 sm:p-10 lg:p-12 max-w-4xl">
+                <span className="font-mono text-[10px] tracking-[0.26em] uppercase text-amber-300/95 block mb-3">
+                  05 // DIAGNÓSTICO GRATUITO &amp; ORÇAMENTO
+                </span>
+
+                <ScrollTypewriter
+                  as="h2"
+                  text="Quer um site de alto padrão como estes para o seu negócio?"
+                  initialChars={1}
+                  cursorColor="gold"
+                  className="font-serif text-[clamp(1.85rem,4.4vw,3.5rem)] leading-[1.16] sm:leading-[1.08] text-offwhite mb-4 font-normal"
+                />
+
+                <p className="font-sans text-sm sm:text-lg leading-relaxed text-offwhite/85 font-light mb-8 max-w-2xl">
+                  Solicite uma análise gratuita do seu site atual ou faça um orçamento personalizado
+                  sem compromisso.
+                </p>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3.5 sm:gap-5">
+                  <a
+                    ref={magneticBtnRef}
+                    href={PROFILE_DATA.whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{
+                      transform: `translate(${btnOffset.x}px, ${btnOffset.y}px)`,
+                    }}
+                    className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-sm bg-gradient-to-r from-amber-300 to-amber-400 text-obsidian font-mono text-xs font-semibold tracking-[0.18em] uppercase hover:from-amber-200 hover:to-amber-300 hover:shadow-[0_0_32px_rgba(251,191,36,0.45)] transition-all duration-300 w-full sm:w-auto"
+                  >
+                    <MessageCircle className="w-4 h-4 shrink-0" />
+                    <span>FALAR NO WHATSAPP / PEDIR ORÇAMENTO</span>
+                    <ArrowRight className="w-4 h-4 shrink-0" />
+                  </a>
+
+                  <a
+                    href={PROFILE_DATA.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-sm border border-white/25 hover:border-amber-300/60 text-offwhite font-mono text-xs tracking-[0.18em] uppercase transition-all duration-300 w-full sm:w-auto"
+                  >
+                    <span>Explorar GitHub</span>
+                    <ArrowUpRight className="w-4 h-4 shrink-0" />
+                  </a>
+                </div>
               </div>
             </div>
 
